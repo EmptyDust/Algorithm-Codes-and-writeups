@@ -25,6 +25,6 @@ int main() {
     }
     cout << ans.size() << endl;
     for (int i=ans.size()-1;i>=0;--i)cout << ans[i] << " ";
-    if(ans.size()==0)cout<<" ";
+    if(ans.size()==0)cout<<""<<endl;//输出空行
     return 0;
 }
