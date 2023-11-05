@@ -10,10 +10,6 @@ public:
             mp[k[0]].push_back(k[1]);
             mp[k[1]].push_back(k[0]);
         }
-            
-        
-        //for(int num:mp[4])cout<<num<<" ";
-        //cout<<endl;
         
         function<long long(int,int)> dp = [&](int i,int par) -> long long{
             //cout<<i<<"value:"<<values[i]<<endl;
