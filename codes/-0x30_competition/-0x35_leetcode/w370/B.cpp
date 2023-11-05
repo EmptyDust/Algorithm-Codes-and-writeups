@@ -4,6 +4,23 @@ using namespace std;
 class Solution {
 public:
     int findChampion(int n, vector<vector<int>>& edges) {
+        vector<bool> ans(n);
+        for(auto k:edges)
+            ans[k[1]]=true;
+        int f=-1;
+        for(int i=0;i<n;++i){
+            if(ans[i])continue;
+            if(f!=-1)return -1;
+            f=i;
+        }
+        return f;
+    }
+};
+
+/*
+class Solution {
+public:
+    int findChampion(int n, vector<vector<int>>& edges) {
         vector<vector<int>> mp(n);
         vector<bool> ans(n,false);
         int a=-1;
@@ -43,3 +60,4 @@ public:
         return a;
     }
 };
+*/
