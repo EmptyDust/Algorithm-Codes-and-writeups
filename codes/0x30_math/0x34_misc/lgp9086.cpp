@@ -5,13 +5,13 @@ using namespace std;
 signed main(){
     int T;cin>>T;
     while(T--){
-        int n;cin>>n;n*=2;
+        int n;cin>>n;n<<=1;
         int sum=0,num;
         while(n--){
             cin>>num;
-            sum+=num%2;
+            sum+=num&1;
         }
-        cout<<abs(sum%2)<<endl;
+        cout<<abs(sum&1)<<endl;
     }
     return 0;
 }
