@@ -37,7 +37,7 @@ int lastlenovo(string str){
             j=0;
         }
     }
-    return ans+1;
+    return ans;
 }
 */
 
@@ -64,7 +64,6 @@ class Trie{
         //cout<<endl;
     }
     int qus(string str){
-        int ans=0;
         Trie* temp = this;
         for(char ch:str){
             if(temp->next[ch-'a']){
