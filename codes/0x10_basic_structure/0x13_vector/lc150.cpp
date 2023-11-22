@@ -6,7 +6,6 @@ public:
     int evalRPN(vector<string>& tokens) {
         int k[100000],i=0;
         for(auto str:tokens){
-            int temp;
             if(str=="+"){
                 k[i-2]=k[i-1]+k[i-2];
                 --i;
