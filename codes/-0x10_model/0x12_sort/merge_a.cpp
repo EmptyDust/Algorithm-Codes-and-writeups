@@ -31,3 +31,4 @@ signed main(){
     cout<<cntx(0,n-1)<<endl;
     return 0;
 }
+
