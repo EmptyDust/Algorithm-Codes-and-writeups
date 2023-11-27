@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 void quick_sort(vector<int>& list,int pre,int suf){
     if(pre>=suf)return;
     int i=pre-1;
