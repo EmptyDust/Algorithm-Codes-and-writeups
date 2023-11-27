@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//高精度加法
 int main(){
     string s1,s2;
     cin>>s1>>s2;
