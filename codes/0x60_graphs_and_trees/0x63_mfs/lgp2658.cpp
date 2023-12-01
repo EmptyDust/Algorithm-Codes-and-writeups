@@ -17,12 +17,10 @@ typedef struct edge
     }
 }edge;
 
-class MS//并查集
-{
-private:
+
     vector<int> vt;
-public:
-    MS(int n){
+
+    void init(int n){
         vt.resize(n);
         for(int i=0;i<n;++i){
             vt[i]=i;
@@ -31,10 +29,6 @@ public:
     int get_root(int x){
         return vt[x]=(vt[x]==x?x:get_root(vt[x]));
     }
-    void merge(edge t,int n){
-        vt[get_root(t.a.x*n+t.a.y)]=vt[get_root(t.b.x*n+t.b.y)];
-    }
-};
 
 signed main(){
     ios::sync_with_stdio(false);
@@ -74,19 +68,22 @@ signed main(){
 
     int s = sign.size();
     //kruskal
-    MS* ms = new MS(m*n);
-    for(edge tmp:edges){
-        ms->merge(tmp,m);
-        int k = ms->get_root(sign[0].x*m+sign[0].y);
+    init(m*n);
+    for(int i=0;i<edges.size();++i){
+        vt[get_root(edges[i].a.x*m+edges[i].a.y)]=vt[get_root(edges[i].b.x*m+edges[i].b.y)];
+        //探测下一个或没有下一个时做
+        if(i!=edges.size()-1&&edges[i+1].weight==edges[i].weight)
+            continue;
+        int k = get_root(sign[0].x*m+sign[0].y);
         bool flag=true;
-        for(int i=1;i<s;++i){
-            if(k != ms->get_root(sign[i].x*m+sign[i].y)){
+        for(int j=1;j<s;++j){
+            if(k != get_root(sign[j].x*m+sign[j].y)){
                 flag=false;
                 break;
             }
         }
         if(flag){
-            cout<<tmp.weight;
+            cout<<edges[i].weight;
             break;
         }
     }
