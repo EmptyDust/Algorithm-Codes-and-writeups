@@ -17,18 +17,15 @@ typedef struct edge
     }
 }edge;
 
+vector<int> vt;
 
-    vector<int> vt;
-
-    void init(int n){
-        vt.resize(n);
-        for(int i=0;i<n;++i){
-            vt[i]=i;
-        }
-    }
-    int get_root(int x){
-        return vt[x]=(vt[x]==x?x:get_root(vt[x]));
-    }
+void init(int n){
+    vt.resize(n);
+    iota(vt.begin(),vt.begin()+n,0);
+}
+int get_root(int x){
+    return vt[x]=(vt[x]==x?x:get_root(vt[x]));
+}
 
 signed main(){
     ios::sync_with_stdio(false);
