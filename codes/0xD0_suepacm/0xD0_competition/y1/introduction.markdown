@@ -2,9 +2,11 @@
 
 这里是上海电力大学程序设计迎新赛。
 
-难度以入门为主，大致对标 Atcoder Beginner Contest 的 A~F 题，以绿题以下为主，不会高于蓝题，大致为 ICPC 中的简单题。
+难度以入门为主，大致对标 Atcoder Beginner Contest 的 A~F 题，以绿题以下为主，不会高于蓝题，大致为 ICPC 中的简单题，在 OI 中大致介于 CSP-J 和 CSP-S 之间。
 
-每一题都给不同水平的选手设计了相应的分数。希望大家玩得开心。
+难度大致按升序排列。
+
+除了 F 题外，每一题都给不同水平的选手设计了相应的分数。希望大家玩得开心。
 
 开始时间：2023.12.9 18:30
 
@@ -16,20 +18,18 @@
 
 验题人：[Empty_Dust](https://www.luogu.com.cn/user/1132118)
 
-联系方式：QQ：1422492074
-
 邀请码：t7tr
 
 ## 题目信息
 
-| Rank | Name | Solution | 
-|:---:|:---:|:---:|
-| A | First Meet | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| B | 【待定】 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| C | NNEZ | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| D | 别来无恙 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| E | Life, the Universe, and Everything | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| F | 游戏 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+| Rank | Name | Scores| Solution | 
+|:---:|:---:|:---:|:---:|
+| A | First Meet | 100 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+| B | Stars in the sky  | 125 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+| C | NNEZ | 150 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+| D | 别来无恙 | 200 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+| E | Life, the Universe, and Everything | 250 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+| F | 游戏 | 300 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
 
 
 ## 上海电力大学
@@ -37,3 +37,9 @@
 ## SUEPACM
 
 一个致力于成功凑齐十个人代表学校第一次参加团体程序设计天梯赛的组织.
+
+联系方式：
+
+QQ：1422492074
+
+微信：Empty_Dust
