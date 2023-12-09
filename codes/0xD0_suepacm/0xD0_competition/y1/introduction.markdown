@@ -22,14 +22,14 @@
 
 ## 题目信息
 
-| Rank | Name | Scores| Solution | 
-|:---:|:---:|:---:|:---:|
-| A | First Meet | 100 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| B | Stars in the sky  | 125 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| C | NNEZ | 150 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| D | 别来无恙 | 200 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| E | Life, the Universe, and Everything | 250 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
-| F | 游戏 | 300 | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+| Rank  |                Name                | Scores |                      Solution                       |
+| :---: | :--------------------------------: | :----: | :-------------------------------------------------: |
+|   A   |             First Meet             |  100   | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+|   B   |          Stars in the sky          |  125   | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+|   C   |                NNEZ                |  150   | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+|   D   |              别来无恙              |  200   | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+|   E   | Life, the Universe, and Everything |  250   | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
+|   F   |                游戏                |  300   | [link](https://www.bilibili.com/video/BV1GJ411x7h7) |
 
 
 ## 上海电力大学
