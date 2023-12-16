@@ -1,86 +1,93 @@
 #include <bits/stdc++.h>
-//#define int long long
+#define int long long
 using namespace std;
-const int MAXN = 222222;
-int bc[MAXN];
-int nxt[MAXN];
-int color[MAXN];
-int f[MAXN];
+constexpr int MAXN = 3e5;
 int n;
-int cnt, ans;
 string s;
-int st[MAXN];
+bool lights[MAXN];
+int nxt[MAXN];
+int cnts[MAXN];
+vector<int> ans, tmpv;
 
-int get_root(int x) {
-    return bc[x] = (bc[x] == x ? x : get_root(bc[x]));
+int count(int x) {
+    int tmp = x;
+    bool f = true;
+    if (lights[tmp])
+        f = !f;
+    if (!f)
+        tmpv.push_back(tmp);
+    tmp = nxt[tmp];
+    while (tmp != x) {
+        if (lights[tmp])
+            f = !f;
+        if (!f)
+            tmpv.push_back(tmp);
+        tmp = nxt[tmp];
+    }
+    if (!f)return -1;
+    return 1;
 }
 
-void f_cir(int x) {
-    if (color[x] == cnt)
-        return;
-    color[x] = cnt;
-    bc[get_root(x)] = bc[get_root(nxt[x])];
-    f_cir(nxt[x]);
-}
-
-void f_cir_dfs(int x) {
-    if (color[x] > 0)
-        return;
-    if (color[x] == -1) {
-        cnt++;
-        st[cnt] = x;
-        f_cir(nxt[x]);
-        return;
+void clear(int x) {
+    while (cnts[x]) {
+        cnts[x]--;
+        x = nxt[x];
     }
-    color[x] = -1;
-    f_cir_dfs(nxt[x]);
-    if (color[x] == -1)
-        color[x] = 0;
-}
-
-void dfs_side(int x, bool sch, int par) {
-    if (color[x] > 0) {
-        if (sch)
-            s[x - 1] = (s[x - 1] == '0' ? '1' : '0');
-        return;
-    }
-    bool res = (sch ^ (s[x - 1] == '1'));
-    if (res) {
-        f[x] = f[par] + 1;
-        dfs_side(nxt[x], 1, x);
-    }
-    else
-        dfs_side(nxt[x], 0, x);
 }
 
 void solve() {
-    //init
-    cnt = 0, ans = 0;
-    for (int i = 0;i <= n;++i)f[i] = 0;
-    for (int i = 0;i <= n;++i)color[i] = 0;
-    //input
-    cin >> n;//>> s;
-    iota(bc, bc + n + 1, 0);
-    for (int i = 1; i <= n; i++)
+    cin >> n >> s;
+    for (int i = 0;i < n;++i)cnts[i] = 0;
+    for (int i = 0;i < n;++i) {
         cin >> nxt[i];
-    //判断环
-    for (int i = 1; i <= n; i++)
-        f_cir_dfs(i);
+        nxt[i]--;
+        cnts[nxt[i]]++;
+        if (s[i] == '1')lights[i] = 1;
+        else lights[i] = 0;
+    }
 
+    vector<int> leaves;
+    for (int i = 0;i < n;++i)if (cnts[i] == 0)leaves.push_back(i);
+    for (int x : leaves) {
+        bool f = true;
+        while (cnts[x] == 0) {
+            if (lights[x])
+                f = !f;
+            if (!f)
+                ans.push_back(x);
+            x = nxt[x];
+            cnts[x]--;
+        }
+        if (!f)lights[x] = !lights[x];
+    }
 
-    cout << ans << '\n';
-    //test
-    for (int i = 1;i <= n;++i)cout << bc[i] << ' ';
-    cout << endl;
-    for (int i = 1;i <= n;++i)cout << color[i] << ' ';
+    for (int i = 0;i < n;++i)if (cnts[i] && lights[i]) {
+        tmpv.clear();
+        int a = count(i);
+        if (a == -1) {
+            cout << -1;
+            return;
+        }
+        vector<int> tmpa(tmpv);
+        tmpv.clear();
+        count(nxt[i]);
+        if (tmpa.size() < tmpv.size())
+            for (int num : tmpa)ans.push_back(num);
+        else
+            for (int num : tmpv)ans.push_back(num);
+        clear(i);
+    }
+    cout << ans.size() << '\n';
+    for (int num : ans)cout << num + 1 << ' ';
 }
 
 signed main() {
     ios::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
     int t;cin >> t;
     while (t--) {
+        ans.clear();
         solve();
+        cout << '\n';
     }
     return 0;
 }
