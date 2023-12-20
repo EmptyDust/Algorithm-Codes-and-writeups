@@ -3,15 +3,15 @@
 using namespace std;
 constexpr int MAXN = 1e6;
 constexpr int mod = 998244353;
-int nums[MAXN], n, t;
+int nums[MAXN], stk[MAXN], rs[MAXN], ls[MAXN], n, t, top;
 using pt = pair<int, int>;
 
-int sted(int l, int r) {
-    if (l > r)return 1;
-    if (l == r)return 2;
-    int i = min_element(nums + l, nums + r + 1) - nums;
-    int lf = sted(l, i - 1) % mod;//左边1
-    int rf = sted(i + 1, r) % mod;//右边2
+int sted(int l, int r, int i) {
+    if (l > r || i == -1)return 1;
+    //cout << i << endl;
+    int lf = sted(l, i - 1, ls[i]) % mod;
+    int rf = sted(i + 1, r, rs[i]) % mod;
+    //if (i == 2)cout << rs[i] << endl;
     int ret = (lf * rf) % mod;
     if (l != 0)ret += rf;
     if (r != n - 1)ret += lf;
@@ -22,8 +22,18 @@ int sted(int l, int r) {
 void solve() {
     cin >> n;
     for (int i = 0;i < n;++i)cin >> nums[i];
-    if (n == 1)cout << 1;
-    else cout << (sted(0, n - 1)) % mod;
+    for (int i = 0;i < n;++i)rs[i] = -1;
+    for (int i = 0;i < n;++i)ls[i] = -1;
+    top = 0;
+    for (int i = 0; i < n; i++) {
+        int k = top;
+        while (k > 0 && nums[stk[k - 1]] > nums[i]) k--;
+        if (k) rs[stk[k - 1]] = i;  // rs代表笛卡尔树每个节点的右儿子
+        if (k < top) ls[i] = stk[k];  // ls代表笛卡尔树每个节点的左儿子
+        stk[k++] = i;
+        top = k;
+    }
+    cout << sted(0, n - 1, stk[0]) % mod;
 }
 
 signed main() {
