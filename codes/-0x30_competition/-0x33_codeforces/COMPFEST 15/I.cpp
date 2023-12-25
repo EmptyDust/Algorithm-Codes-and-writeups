@@ -16,13 +16,14 @@ signed main() {
         ns[x] = max(ns[x], y), ms[y] = max(ms[y], x);
     }
     bool f = false;
-    for (int i = n, j = m;i > 0 && j > 0;i--, j--) {
-        while (i > 0 && j > 0 && (ns[i] >= j || ms[j] >= i)) {
-            if (i > 0 && ns[i] >= j)--i;
-            if (j > 0 && ms[j] >= i)--j;
+    for (int i = n, j = m;i > 0 && j > 0;) {
+        if (i <= ms[j] && j <= ns[i])--i, --j;
+        else if (i <= ms[j])--j;
+        else if (j <= ns[i])--i;
+        else {
+            if (i == 1 && j == 1)f = true;
+            --i, --j;
         }
-        if (i == 1 && j == 1)f = true;
-        //cout << i << ' ' << j << endl;
     }
     if (f)cout << "Bhinneka";
     else cout << "Chaneka";
