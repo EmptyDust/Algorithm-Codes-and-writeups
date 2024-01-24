@@ -25,9 +25,9 @@ vector<int> rd(vector<int>& leave) {
     }
     for (int num : leave) {
         int sf = suf[num];
-        if (check(sf))ret.push_back(sf);
+        if (check(sf))ret.push_back(sf), alive[sf] = false;
         int pr = pre[num];
-        if (check(pr))ret.push_back(pr);
+        if (check(pr))ret.push_back(pr), alive[pr] = false;
     }
     return ret;
 }
@@ -43,7 +43,7 @@ void solve() {
 
     vector<int> leave;
     for (int i = 0;i < n;++i)if (check(i))
-        leave.push_back(i);
+        leave.push_back(i), alive[i] = false;
 
     for (int i = 0;i < n;++i)leave = rd(leave);
 
