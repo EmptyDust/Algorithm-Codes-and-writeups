@@ -51,7 +51,6 @@ signed main() {
         }
     }
 
-
     cout << (ans == INT_MAX ? -1 : ans);
     return 0;
 }

@@ -6,25 +6,21 @@ constexpr int MAXN = 2e5;
 vector<int> pts[MAXN];
 string s;
 
-int zh(int a, int b) {
-    if (a < b)return 0;
-    if (b > a / 2)b = a - b;
-    int tmp = b;
+int qpow(int a, int n) {
     int ans = 1;
-    for (int i = a;i > a - b;--i) {
-        int t = i;
-        while (tmp > 1 && t % tmp == 0) { t /= tmp;tmp--; }
-        ans = (ans * t) % mod;
-    }
-    return ans % mod;
+    while (n) { if (n & 1)ans = ans * a % mod;a = a * a % mod;n >>= 1; }
+    return ans;
 }
 
-int pow2(int n) {
-    if (n == 0)return 1;
-    if (n == 1)return 2;
-    int tmp = (pow2(n / 2) * pow2(n / 2)) % mod;
-    if (n & 1)return (tmp * 2) % mod;
-    return tmp % mod;
+#define inv(x) qpow(x,mod-2)
+
+int c(int a, int b) {
+    if (a < b)return 0;
+    if (b > a / 2)b = a - b;
+    int ans = 1;
+    for (int i = a, j = 1;j <= b;--i, ++j)
+        ans = ans * i % mod * inv(j) % mod;
+    return ans % mod;
 }
 
 int cntt = 0;
@@ -32,11 +28,11 @@ int cntt = 0;
 int get_num(int x) {
     cntt++;
     if (pts[x].empty())return 1;
-    int ret = 0;
+    int ret = 1;
     for (auto p : pts[x]) if (s[p] != 'R') {
         ret += get_num(p);
     }
-    return ret + 1;
+    return ret;
 }
 
 int ans = 1;
@@ -44,11 +40,9 @@ int ans = 1;
 void red_t(int x) {
     int num = get_num(x);
     int ret = 0;
-    for (int k = (3 - num % 3) % 3;k <= num;k += 3) {
-        //cout << zh(num, k) << endl;
-        ret = (ret + zh(num, k)) % mod;
-    }
-    ans = (ans * ret) % mod;
+    for (int k = (3 - num % 3) % 3;k <= num;k += 3)
+        ret = (ret + c(num, k)) % mod;
+    ans = ans * ret % mod;
 }
 
 signed main() {
@@ -64,8 +58,8 @@ signed main() {
         red_.push_back(i);
     for (int num : red_)
         red_t(num);
-    ans = (ans * pow2(n - cntt)) % mod;
-    cout << ans % mod;
+    ans = ans * qpow(2, n - cntt) % mod;
+    cout << ans;
 
     return 0;
 }
