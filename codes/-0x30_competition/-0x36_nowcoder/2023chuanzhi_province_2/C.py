@@ -10,7 +10,6 @@ for num in sorted(cnt, reverse=True):
     if k>0:
         ans+=min(k,num)**2
         k-=num
-        print(num)
     else:
         break
 
