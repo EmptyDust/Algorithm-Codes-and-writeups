@@ -5,25 +5,23 @@ constexpr int MAXN = 1e6 + 10;
 int nums[MAXN], n;
 using pt = pair<int, int>;
 
-void solve() {
-    int a, b;cin >> a >> b;
-    if (a % 2 == 0 && b % 2 == 0) {
-        cout << "Yes";
-        return;
+bool solve() {
+    int k, x, a;cin >> k >> x >> a;
+    int sum = 0, cur;
+    for (int i = 0;i <= x;++i) {
+        cur = sum / (k - 1) + 1;
+        sum += cur;
+        //cout << cur << ' ';
+        if (sum > a)return false;
     }
-    if (a % 2 == 1 && b % 2 == 1) {
-        cout << "No";
-        return;
-    }
-    if (a > b)swap(a, b);
-    cout << (2 * a == b ? "No" : "Yes");
+    return sum <= a;
 }
 
 signed main() {
     ios::sync_with_stdio(false);
     int t;cin >> t;
     while (t--) {
-        solve();
+        cout << (solve() ? "YES" : "NO");
         cout << '\n';
     }
     return 0;

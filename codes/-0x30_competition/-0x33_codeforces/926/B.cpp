@@ -6,17 +6,14 @@ int nums[MAXN], n;
 using pt = pair<int, int>;
 
 void solve() {
-    int a, b;cin >> a >> b;
-    if (a % 2 == 0 && b % 2 == 0) {
-        cout << "Yes";
+    int n, k;cin >> n >> k;
+    int ans = n * 2 - 2;
+    if (ans * 2 >= k) {
+        cout << (k + 1) / 2;
         return;
     }
-    if (a % 2 == 1 && b % 2 == 1) {
-        cout << "No";
-        return;
-    }
-    if (a > b)swap(a, b);
-    cout << (2 * a == b ? "No" : "Yes");
+    k -= ans * 2;
+    cout << ans + k;
 }
 
 signed main() {
