@@ -2,19 +2,19 @@
 #define int long long 
 using namespace std;
 constexpr int MAXN = 1e6 + 10;
+int nums[MAXN];
 
 void solve() {
     int n;cin >> n;
-    vector<int> nums(n);
     for (int i = 0;i < n;++i)cin >> nums[i];
-    sort(nums.begin(), nums.end());
-    nums.erase(unique(nums.begin(), nums.end()), nums.end());
-    int ans = 0;
-    for (int l = 0, r = 0;r < nums.size();r++) {
-        while (nums[r] - nums[l] >= n)l++;
-        ans = max(r - l + 1, ans);
+    vector<int> cnts(26, -1);
+    for (int i = 0;i < n;++i) {
+        for (int j = 0;j < 26;++j)if (cnts[j] == nums[i] - 1) {
+            cnts[j]++;
+            cout << (char)('a' + j);
+            break;
+        }
     }
-    cout << ans;
 }
 
 signed main() {
