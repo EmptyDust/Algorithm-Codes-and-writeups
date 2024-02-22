@@ -24,6 +24,7 @@ bool dfs(int x, int pre) {
 void solve() {
     cin >> n >> m;
     iota(dsu, dsu + n + 1, 0);
+    for (int i = 1;i <= n;++i)adj[i].clear();
     ans.clear();
     int u, v;
     f = false;

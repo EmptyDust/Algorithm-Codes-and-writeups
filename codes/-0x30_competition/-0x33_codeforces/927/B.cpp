@@ -6,7 +6,14 @@ int nums[MAXN], n;
 using pt = pair<int, int>;
 
 void solve() {
-
+    int n;cin >> n;
+    int ans = 0;
+    for (int i = 0;i < n;++i) {
+        cin >> nums[i];
+        ans = (ans / nums[i] + 1) * nums[i];
+        //cout << ans << ' ';
+    }
+    cout << ans;
 }
 
 signed main() {
