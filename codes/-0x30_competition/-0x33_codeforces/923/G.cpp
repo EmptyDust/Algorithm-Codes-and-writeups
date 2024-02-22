@@ -16,8 +16,8 @@ void solve() {
         for (int j = i + 1;j < min(n, i + nums[i]);++j)
             f[j] = min(f[j], f[i] + 1);
     }
-    for (int i = 0;i < n;++i)cout << f[i] << ' ';
-    cout << endl;
+    //for (int i = 0;i < n;++i)cout << f[i] << ' ';
+    //cout << endl;
     cout << f[n - 1];
 }
 
