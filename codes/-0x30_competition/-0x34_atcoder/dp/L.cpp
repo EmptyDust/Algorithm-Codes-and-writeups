@@ -9,12 +9,12 @@ signed main() {
     ios::sync_with_stdio(false);
     int n;cin >> n;
     for (int i = 1;i <= n;++i)cin >> nums[i];
-    bool cur = 1;
-    for (int l = 1, r = n;l < r;) {
-        if (cur) {
-
-        }
-        cur = !cur;
+    for (int i = 1;i <= n;++i)for (int j = 1;j <= n;++j)if (i + j <= n) {
+        if ((i + j) & 1)
+            dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + nums[i];
+        else
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + nums[i];
     }
+
     return 0;
 }
