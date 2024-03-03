@@ -36,15 +36,14 @@ void solve() {
             dfs(u, -1);
             ans.push_back(i);
             sort(ans.begin(), ans.end());
-            for (int j = 0;j < ans.size() - 1;++j)cout << ans[j] << ' ';
-            cout << ans[ans.size() - 1];
+            for (int j = 0;j < ans.size();++j)cout << ans[j] << " \n"[j == ans.size() - 1];
             continue;
         }
         adj[u].push_back({ v,i });
         adj[v].push_back({ u,i });
         dsu[get_root(u)] = get_root(v);
     }
-    if (!f)cout << -1;
+    if (!f)cout << -1 << '\n';
 }
 
 signed main() {
@@ -53,7 +52,6 @@ signed main() {
     int t;cin >> t;
     while (t--) {
         solve();
-        cout << '\n';
     }
     return 0;
 }
