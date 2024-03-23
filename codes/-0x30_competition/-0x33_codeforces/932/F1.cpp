@@ -1,0 +1,110 @@
+#include <bits/stdc++.h>
+using i64 = long long;
+constexpr int MAXN = 2e5 + 10, inf = 1e8;
+using pt = std::pair<int, int>;
+
+struct ANS
+{
+    int ans;
+    std::vector<pt> sides;
+};
+
+struct Node
+{
+    int min, max;
+    int mex = 1;
+    std::set<int> nums;
+    Node() {
+        min = inf;
+        max = -inf;
+    }
+    Node(int x) {
+        min = max = x;
+        nums.insert(x);
+        while (nums.count(mex))mex++;
+    }
+    int size() { return nums.size(); }
+    bool empty() { return nums.empty(); }
+    int count(int x) { return nums.count(x); }
+};
+
+void add(struct Node& A, struct Node& B) {
+    A.min = std::min(A.min, B.min);
+    A.max = std::max(A.max, B.max);
+    A.mex = std::max(A.mex, B.mex);
+    if (A.size() < B.size())swap(A.nums, B.nums);
+    for (int num : B.nums)A.nums.insert(num);
+    B.nums.clear();
+    while (A.count(A.mex))A.mex++;
+}
+
+int n;
+std::vector<int> adj[MAXN];
+struct ANS res[MAXN];
+//struct Node info[MAXN];
+struct Node dfs(int x, int par) {
+    int& ans = res[x].ans = adj[x].size() - 1;
+    auto& sides = res[x].sides;
+    auto info = Node(x);
+    std::vector<Node> tmp(adj[x].size() - (x != n));
+    int tt = 0;
+    for (int nxt : adj[x])if (nxt != par)
+        tmp[tt++] = dfs(nxt, x);
+    std::sort(tmp.begin(), tmp.end(), [&](Node a, Node b) {return a.min < b.min;});
+    struct Node A, B;
+    for (auto nxt_info : tmp) {
+        int min = nxt_info.min;
+        if (min == 1)A = nxt_info;
+        else if (min == x + 1)B = nxt_info;
+        else {
+            sides.push_back({ min,min - 1 });
+            if (A.count(min - 1))add(A, nxt_info);
+            else if (B.count(min - 1))add(B, nxt_info);
+            else add(info, nxt_info);
+        }
+    }
+    if (x == n)return info;
+    if (!B.empty()) {
+        sides.push_back({ B.max,B.max + 1 });
+        add(info, B);
+    }
+    if (!A.empty()) {
+        if (A.max != x - 1)sides.push_back({ A.max,A.max + 1 });
+        else if (A.mex == x && A.size() == x - 1)sides.push_back({ x - 1,x + 1 }), ans++;
+        else sides.push_back({ A.mex,A.mex - 1 });
+        add(info, A);
+    }
+    return info;
+};
+
+void solve() {
+    std::cin >> n;
+    for (int i = 1;i <= n;++i) {
+        adj[i].clear();
+        res[i] = {};
+    }
+    for (int i = 1;i < n;++i) {
+        int u, v;
+        std::cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    dfs(n, -1);
+    for (int i = 1;i <= n;++i) {
+        std::cout << res[i].ans << ' ' << res[i].sides.size() << '\n';
+        for (auto [u, v] : res[i].sides) {
+            std::cout << u << ' ' << v << '\n';
+        }
+        std::cout << '\n';
+    }
+}
+
+signed main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0), std::cout.tie(0);
+    int t;std::cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
