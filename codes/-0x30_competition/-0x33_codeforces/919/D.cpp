@@ -1,60 +1,50 @@
 #include <bits/stdc++.h>
-#define int long long 
-using namespace std;
-constexpr int MAXN = 1e18;
-int qrys[(int)1e6], zbs[(int)1e6], ans[(int)1e6];
-using pt = pair<int, int>;
-using pv = pair<int, vector<int>>;
+using i64 = long long;
+constexpr i64 inf = 1e18;
+int n, q;
+using pt = std::pair<int, int>;
 
 void solve() {
-    int n, q;cin >> n >> q;
-    vector<pv> pvs;
-    pvs.push_back({ 0,{} });
-    int s = 0;bool f = true;
-    while (n--) {
-        int op, num;cin >> op >> num;
-        if (!f)continue;
-        pv& lst = pvs[pvs.size() - 1];
-        int& lnum = lst.first;
-        vector<int>& vec = lst.second;
-        if (op == 1) {
-            vec.push_back(num);
-            s++;
+    std::cin >> n >> q;
+    std::vector<int> mul{ 1 };
+    std::vector<i64> len{ 0 };
+    std::vector<std::vector<int>> nums(1);
+    for (int i = 0;i < n;++i) {
+        int b, x;std::cin >> b >> x;
+        if (b == 1) {
+            nums.back().push_back(x);
         }
-        if (op == 2) {
-            s *= num;
-            if (s > MAXN) {
-                f = false;
-                continue;
+        else {
+            if (len.back() < inf) {
+                len.push_back(len.back() <= inf / mul.back() ? len.back() * mul.back() + nums.back().size() : inf);
+                mul.push_back(x + 1);
+                nums.push_back({});
             }
-            if (vec.empty())
-                lnum *= num;
-            else
-                pvs.push_back({ num,{} });
         }
     }
-    for (int i = 0;i < q;++i)cin >> qrys[i];
-    iota(zbs, zbs + q, 0);
-    sort(zbs, zbs + q, [&](int a, int b) {return qrys[a] < qrys[b];});
-    int qi = 0, sz = 0;
-    for (pv nums : pvs) {
-        vector<int> vec = nums.second;
-        int mul = nums.first + 1;
-        int vs = vec.size();
-        sz += vs;
-        while (mul * vs >= qrys[zbs[qi]]) {
 
-            qi++;
+    while (q--) {
+        i64 k;
+        std::cin >> k;
+        k--;
+
+        for (int i = nums.size() - 1;~i;--i) {
+            if (k / mul[i] >= len[i]) {
+                std::cout << nums[i][k - mul[i] * len[i]] << " \n"[q == 0];
+                break;
+            }
+            else
+                k %= len[i];
         }
     }
 }
 
 signed main() {
-    ios::sync_with_stdio(false);
-    int t;cin >> t;
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0), std::cout.tie(0);
+    int t;std::cin >> t;
     while (t--) {
         solve();
-        cout << '\n';
     }
     return 0;
 }
