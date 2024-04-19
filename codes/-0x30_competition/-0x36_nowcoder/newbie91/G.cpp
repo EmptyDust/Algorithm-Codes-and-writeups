@@ -1,13 +1,12 @@
 #include <bits/stdc++.h>
-#define int long long
-using namespace std;
-constexpr int MAXN = 1e6 + 10;
-int p[MAXN][32], n, depth[MAXN], lg[MAXN];
-using pt = pair<int, int>;
-vector<int> adj[MAXN];
+using i64 = long long;
+constexpr int MAXN = 1e6 + 10, inf = 1e9, mod = 1e9 + 7;
+using pt = std::pair<int, int>;
+std::vector<int> adj[MAXN];
 
+int depth[MAXN], lg[MAXN], p[MAXN][30];
 int lca(int x, int y) {
-    if (depth[x] < depth[y])swap(x, y);
+    if (depth[x] < depth[y])std::swap(x, y);
     while (depth[x] > depth[y])
         x = p[x][lg[depth[x] - depth[y]] - 1];
     if (x == y)return x;
@@ -27,22 +26,11 @@ void dfs(int x, int par) {
 }
 
 signed main() {
-    ios::sync_with_stdio(false);
-    int n, m, s;
-    cin >> n >> m >> s;
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0), std::cout.tie(0);
+    int n;std::cin >> n;
     for (int i = 1;i <= n;++i)
         lg[i] = lg[i >> 1] + 1;
-    int u, v;
-    for (int i = 1;i < n;++i) {
-        int u, v;cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
-    dfs(s, 0);
-    int x, y;
-    while (m--) {
-        cin >> x >> y;
-        cout << lca(x, y) << '\n';
-    }
+
     return 0;
 }
