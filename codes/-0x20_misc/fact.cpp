@@ -40,32 +40,9 @@ i64 A(int n, int k) {
 
 i64 F(int n) { return get_fact(n); }
 
-void solve() {
-    int n, m1, m2;std::cin >> n >> m1 >> m2;
-    std::vector<int> s(m1), t(m2);
-    for (int i = 0;i < m1;++i)std::cin >> s[i];
-    for (int i = 0;i < m2;++i)std::cin >> t[i];
-    if (s.front() != 1 || s.back() != t.front() || t.back() != n) {
-        std::cout << 0;
-        return;
-    }
-    i64 res = C(n - 1, s[m1 - 1] - 1);
-    for (int i = m1 - 2;~i;--i) {
-        res = res * C(s[i + 1] - 2, s[i + 1] - s[i] - 1) % mod * F(s[i + 1] - s[i] - 1) % mod;
-    }
-    for (int i = 1;i < m2;++i) {
-        res = res * C(n - t[i - 1] - 1, t[i] - t[i - 1] - 1) % mod * F(t[i] - t[i - 1] - 1) % mod;
-    }
-    std::cout << res;
-}
-
 signed main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(0), std::cout.tie(0);
-    int t;std::cin >> t;
-    while (t--) {
-        solve();
-        std::cout << '\n';
-    }
+    std::cout << A(4, 2);
     return 0;
 }
