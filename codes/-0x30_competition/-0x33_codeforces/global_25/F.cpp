@@ -1,75 +1,67 @@
 #include <bits/stdc++.h>
 using i64 = long long;
-constexpr int MAXN = 1e6 + 10;
-int nums[MAXN], n;
+constexpr int MAXN = 1e6 + 10, inf = 1e9, mod = 1e9 + 7;
+i64 n, k;
+int q[MAXN], p[MAXN], qp[MAXN], cnt[MAXN];
 using pt = std::pair<int, int>;
 
-struct indexed_tree {
 #define lowbit(x) x&-x
-    std::vector<i64> i_tree;
-    i64 n;
-    indexed_tree(int x) {
-        i_tree.assign(x + 1, 0);
-        n = x;
-    }
-    void update(int pos, i64 x) {
-        for (int i = pos;i <= n;i += lowbit(i)) {
-            i_tree[i] += x;
-        }
-    }
-    i64 query(int pos) {
-        i64 res = 0;
-        for (int i = pos;i;i -= lowbit(i)) {
-            res += i_tree[i];
-        }
-        return res;
-    }
-#undef lowbit(x)
-};
+int BIT[MAXN];
+void update(int pos, int num = 1) {
+    for (int i = pos;i <= n;i += lowbit(i))
+        BIT[i] += num;
+}
+int query(int pos) {
+    int ret = 0;
+    for (int i = pos;i;i -= lowbit(i))
+        ret += BIT[i];
+    return ret;
+}
 
-i64 count_inversion(std::vector<int> nums) {
-    int n = nums.size();
-    /*
-    std::vector<int> f(n), zbs(n);
-    std::iota(zbs.begin(), zbs.end(), 0);
-    std::sort(zbs.begin(), zbs.end(), [&](int a, int b) {return nums[a] < nums[b];});
-    for (int i = 0;i < n;++i) {
-        if (i && nums[zbs[i]] == nums[zbs[i - 1]])f[zbs[i]] = f[zbs[i - 1]];
-        else f[zbs[i]] = i + 1;
+i64 cal(int nums[MAXN]) {
+    for (int i = 1;i <= n;++i)
+        BIT[i] = 0;
+    i64 rev = 0;
+    for (int i = 1;i <= n;++i) {
+        cnt[i] = query(nums[i]);
+        rev += i - 1 - cnt[i];
+        update(nums[i]);
     }
-    */
-    indexed_tree* t = new indexed_tree(n);
-    i64 res = 0;
-    for (int i = 0;i < n;++i) {
-        res += i;
-        res -= t->query(nums[i]);
-        t->update(nums[i], 1);
-    }
-    return res;
+    return rev;
 }
 
 void solve() {
-    int n, k;std::cin >> n >> k;
-    std::vector<int>nums(n);
-    for (int& num : nums)std::cin >> num;
-    int cnt = count_inversion(nums);
-    if (cnt > k || (k - cnt) % 2) {
-        std::cout << "No";
+    std::cin >> n >> k;
+    for (int i = 1;i <= n;++i)qp[i] = 1;
+    for (int i = 1;i <= n;++i)std::cin >> p[i];
+    i64 rev = cal(p);
+    if (k < rev || k > n * (n - 1) - rev || (k - rev) % 2 == 1) {
+        std::cout << "NO";
         return;
     }
-    if (cnt == k) {
-        std::cout << "Yes";
-        for (int i = 1;i <= n;++i)std::cout << i << ' ';
-        return;
+    std::cout << "YES" << '\n';
+    k = (k - rev) / 2;
+    for (int i = 1;i <= n;++i) {
+        if (cnt[i] < k) {
+            k -= cnt[i];
+        }
+        else {
+            for (int j = 1, v = i; j < i; j++) {
+                qp[j] = v--;
+                if (p[j] < p[i] && --k == 0) {
+                    qp[i] = v--;
+                }
+            }
+            for (int j = i + 1; j <= n; j++) {
+                qp[j] = j;
+            }
+            break;
+        }
     }
-    std::vector<int> zbs(n), ans;
-    std::iota(zbs.begin(), zbs.end(), 0);
-    std::iota(ans.begin(), ans.end(), 1);
-    std::sort(zbs.begin(), zbs.end(), [&](int a, int b) {return nums[a] < nums[b];});
-    int pre = 0;
-    for (int i = n - 1;i >= 0;--i) {
-        int m = zbs[i] * 2;
-    }
+    for (int i = 1;i <= n;++i)
+        q[p[i]] = qp[i];
+    for (int i = 1;i <= n;++i)
+        std::cout << q[i] << ' ';
 }
 
 signed main() {

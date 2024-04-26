@@ -43,6 +43,6 @@ i64 F(int n) { return get_fact(n); }
 signed main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(0), std::cout.tie(0);
-    std::cout << A(4, 2);
+    std::cout << inv(10);
     return 0;
 }
