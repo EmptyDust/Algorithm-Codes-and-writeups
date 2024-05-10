@@ -4,7 +4,7 @@ using namespace std;
 #define IOS ios::sync_with_stdio(false),cin.tie(nullptr),cout.tie(nullptr);
 #define int long long
 
-constexpr int MAXN = 1e5 + 10, mod = 1e9 + 7;
+constexpr int mod = 1e9 + 7;
 using i64 = long long;
 
 template<class T>
@@ -354,8 +354,8 @@ Comb<Z> comb;
 
 signed main() {
     IOS;
-    int n, k;
-    cin >> n >> k;
-    cout << Z(comb.Catalan(n)) * Z(power(Z(k), n)) << endl;
+    int n;
+    cin >> n;
+    cout << Z(comb.Catalan(n)) << endl;
     return 0;
 }

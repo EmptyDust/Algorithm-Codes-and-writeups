@@ -4,7 +4,6 @@ using namespace std;
 #define IOS ios::sync_with_stdio(false),cin.tie(nullptr),cout.tie(nullptr);
 #define int long long
 
-constexpr int MAXN = 1e5 + 10, mod = 1e9 + 7;
 using i64 = long long;
 
 template<class T>
@@ -261,12 +260,12 @@ struct MInt {
 };
 
 template<>
-int MInt<0>::Mod = mod;
+int MInt<0>::Mod = 1e9 + 7;
 
 template<int V, int P>
 constexpr MInt<P> CInv = MInt<P>(V).inv();
 
-constexpr int P = mod;
+constexpr int P = 1e9 + 7;
 using Z = MInt<P>;
 
 
