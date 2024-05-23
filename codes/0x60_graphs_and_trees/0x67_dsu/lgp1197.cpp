@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using i64 = long long;
-constexpr int MAXN = 2e5 + 10;
+constexpr int MAXN = 2e6 + 10;
 using pt = std::pair<int, int>;
 std::vector<int> adj[MAXN];
 
