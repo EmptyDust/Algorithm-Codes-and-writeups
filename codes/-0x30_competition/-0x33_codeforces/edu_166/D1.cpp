@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using i64 = long long;
+constexpr int MAXN = 1e6 + 10, inf = 1e9, mod = 1e9 + 7;
+int nums[MAXN], n;
+using pt = std::pair<int, int>;
+
+void solve() {
+    std::string s;std::cin >> s;
+    int cur = 0;
+    std::map<int, int> mp;
+    i64 ans = 0;
+    for (char ch : s) {
+        cur += (ch == '(' ? 1 : -1);
+        mp.erase((cur - 1) / 2);
+        ans += mp[cur];
+        mp[cur]++;
+    }
+    std::cout << ans;
+}
+
+signed main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0), std::cout.tie(0);
+    int t;std::cin >> t;
+    while (t--) {
+        solve();
+        std::cout << '\n';
+    }
+    return 0;
+}
