@@ -2,6 +2,7 @@
 using i64 = long long;
 constexpr int MAXN = 1e6 + 10, inf = 1e9, mod = 1e9 + 7;
 using pt = std::pair<i64, i64>;
+using vec = std::pair<i64, i64>;
 i64 n, x, y, dis;
 
 bool check(pt a, pt b, pt pos, int dis) {
@@ -9,7 +10,12 @@ bool check(pt a, pt b, pt pos, int dis) {
     // 判断距离
 
     // 判断倾角
+    vec ab = { b.first - a.first,b.second - a.second };
+    vec oa = a;
+    i64 abXoa = ab.first * oa.second - ab.second * oa.first;
+    if (abXoa <= 0)return false;//在右侧
 
+    return true;
 }
 
 i64 cal(pt a, pt b, pt c) {
