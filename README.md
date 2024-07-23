@@ -13,7 +13,8 @@
 | 洛谷       | www.luogu.com.cn         | lg   | www.luogu.com.cn/user/1132118                         | √        |
 | 牛客       | https://ac.nowcoder.com  | nc   | https://ac.nowcoder.com/acm/contest/profile/367246012 | √        |
 | PTA        | www.pintia.cn            | pt   | 网站无个人界面                                        |
-| libre      | loj.ac                   | lb   | https://loj.ac/u/Empty_Dust                           | √        |
+| libre      | loj.ac                   | lb   | https://loj.ac/u/Empty_Dust                           |          |
+| hdu        | acm.hdu.edu.cn/          | hd   | https://acm.hdu.edu.cn/userstatus.php?user=EmptyDust  | √        |
 
 # 模板库
 1. 算法模板大全\
