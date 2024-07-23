@@ -1,49 +1,65 @@
 #include <bits/stdc++.h>
-using i64 = long long;
-constexpr int N = 1e6, MAXN = 1e6 + 10, inf = 1e9, mod = 1e9 + 7;
-using pii = std::pair<int, int>;
-using a3 = std::array<int, 3>;
+
+#define all(x) (x).begin(), (x).end()
+#define allr(x) (x).rbegin(), (x).rend()
+
+const char nl = '\n';
+typedef long long ll;
+typedef long double ld;
+
+using namespace std;
+
+const int inf = 1e9;
 
 void solve() {
-    int n;std::cin >> n;
-    std::vector<int> a(n + 1);
-    for (int i = 1;i <= n;++i)std::cin >> a[i];
-    int cnt = 0;
-    std::deque<a3> pts;
-    std::vector<int> check(n + 1);
-    for (int i = n - 1;i >= 1;--i) {
-        int pos;
-        for (int j = 1;j <= n;++j)if (j == a[i])pos = j;
-        if (pos == i) {
-            int ad = 0;
-            for (auto& [cur, need, pos] : pts) {
-                if (check[pos])continue;
-                cur += ad;
-                if (cur == need) {
-                    ad++;
-                    cnt++;
-                    bool f = false;
-                    for (int j = pos + 1;j < n;++j) {
-                        if (!check[j]) {
+    int n;
+    cin >> n;
 
-                        }
-                    }
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+
+
+    vector<vector<int>> dp(n + 1, vector<int>(n + 1, inf));
+
+    for (int i = 0; i <= n; i++) {
+        dp[i][i] = 0;
+    }
+
+    for (int le = 2; le <= n; le++) {
+        for (int l = 0; l + le <= n; l++) {
+            if (a[l] % 2 != (l + 1) % 2) continue;
+            if (a[l] > l + 1) continue;
+            int v = (l + 1 - a[l]) / 2;
+
+            int r = l + le;
+            for (int m = l + 1; m < r; m += 2) { // index of the closing bracket
+                if (dp[l + 1][m] <= v) {
+                    int new_val = max(v, dp[m + 1][r] - (m - l + 1) / 2);
+                    dp[l][r] = min(dp[l][r], new_val);
                 }
             }
         }
-        else if (pos < i && (i - pos) % 2 == 0) {
-            pts.push_front({ 0, (i - pos) / 2 ,i });
+    }
+
+    vector<int> dp2(n + 1);
+    for (int i = 0; i < n; i++) {
+        dp2[i + 1] = dp2[i];
+
+        for (int j = 0; j < i; j++) {
+            if (dp[j][i + 1] <= dp2[j]) {
+                dp2[i + 1] = max(dp2[i + 1], dp2[j] + (i - j + 1) / 2);
+            }
         }
     }
+    cout << dp2[n] << nl;
 }
 
-signed main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0), std::cout.tie(0);
-    int t;std::cin >> t;
-    while (t--) {
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+
+    int T;
+    cin >> T;
+    while (T--) {
         solve();
-        std::cout << '\n';
     }
-    return 0;
 }

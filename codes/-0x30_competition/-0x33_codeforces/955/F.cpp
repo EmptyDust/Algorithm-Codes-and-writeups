@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 
 constexpr int MAXN = 1e6 + 7, inf = 1e9 + 7;
+using pii = std::pair<int,int>;
 
 struct info{
 	int min;
@@ -32,7 +33,7 @@ void update(int p,int x,int l = 1,int r = n,int i = 1){
 	tree[i] = tree[i << 1] + tree[i << 1 | 1];
 }
 
-info query(int ql, int qr, int l, int r, int i){
+info query(int ql, int qr, int l = 1, int r = n, int i = 1){
 	if(l > r) return info();
 	if(qr < l || r < ql)return info();
 	if(ql <= l && r <= qr)return tree[i];
@@ -40,12 +41,19 @@ info query(int ql, int qr, int l, int r, int i){
 	return query(ql,qr,l,mid,i << 1) + query(ql,qr,mid + 1,r,i << 1 | 1);
 }
 
+pii cal(std::set<int> &st,std::vector<int> &vt){
+	if(st.size() == 0)return {-1,-1};
+	int pre = *st.begin();
+	int suf = *(--st.end()) - 1;
+	
+}
+
 void solve(){
 	std::cin>>n;
 	std::vector<int> a(n + 1);
 	for(int i = 1;i <= n;++i){
 		std::cin >> a[i];
-		update()
+		update(i, a[i]);
 	}
 	std::set<int> st;
 	for(int i = 1;i < n;++i){
@@ -57,6 +65,7 @@ void solve(){
 	while(q--){
 		int pos, val;
 		std::cin >> pos >> val;
+		update(pos, val);
 
 	}
 }
