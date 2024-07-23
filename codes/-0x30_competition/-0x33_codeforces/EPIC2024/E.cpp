@@ -27,6 +27,8 @@ i64 dfs(int x, int p) {
             cost[x].pop();
             if (canuse == -1) {
                 ans += c * cst;
+                while (cost[x].size())
+                    cost[x].pop();
                 cost[x].push({ cst,-1 });
                 c = 0;
             }
