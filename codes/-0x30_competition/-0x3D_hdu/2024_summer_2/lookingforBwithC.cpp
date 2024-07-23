@@ -3,96 +3,108 @@ using i64 = long long;
 constexpr int N = 1e6, MAXN = 1e6 + 10, inf = 1e9, mod = 1e9 + 7;
 using pii = std::pair<int, int>;
 
-struct Trie
-{
-    std::vector<int> end;
-    Trie* tries[26];
-    Trie* fail;
-    Trie* Fa;
-    char ch;
-    bool vis = false;
-    void join_trie(std::string& s, int id) {
-        Trie* cur = this;
-        for (char ch : s) {
-            int c = ch - 'a';
-            if (!cur->tries[c]) {
-                cur->tries[c] = new Trie();
-                cur->tries[c]->Fa = cur;
-                cur->tries[c]->ch = ch;
-            }
-            cur = cur->tries[c];
-        }
-        cur->end.push_back(id);
+//AC自动机
+struct AhoCorasick {
+    static constexpr int ALPHABET = 26;
+    struct Node {
+        int len;
+        int link;
+        std::array<int, ALPHABET> next;
+        Node() : len{ 0 }, link{ 0 }, next{} {}
+    };
+
+    std::vector<Node> t;
+
+    AhoCorasick() {
+        init();
     }
+
+    void init() {
+        t.assign(2, Node());
+        t[0].next.fill(1);
+        t[0].len = -1;
+    }
+
+    int newNode() {
+        t.emplace_back();
+        return t.size() - 1;
+    }
+
+    int add(const std::string& a) {
+        int p = 1;
+        for (auto c : a) {
+            int x = c - 'a';
+            if (t[p].next[x] == 0) {
+                t[p].next[x] = newNode();
+                t[t[p].next[x]].len = t[p].len + 1;
+            }
+            p = t[p].next[x];
+        }
+        return p;
+    }
+
     void get_fail() {
-        fail = this;
-        std::queue<Trie*> q;
-        for (int i = 0;i < 26;++i)if (tries[i]) {
-            q.push(tries[i]);
-        }
-        while (q.size()) {
-            auto cur = q.front();
+        std::queue<int> q;
+        q.push(1);
+
+        while (!q.empty()) {
+            int x = q.front();
             q.pop();
-            for (int i = 0;i < 26;++i)if (cur->tries[i]) {
-                q.push(cur->tries[i]);
-            }
-            cur->fail = this;
-            if (cur->Fa == this)continue;
-            auto next = cur->Fa->fail;
-            // if (cur->Fa->ch == 'a' && cur->ch == 's')
-            //     if (cur->Fa->fail == this)std::cout << "WIN\n";
-            while (next) {
-                if (next->tries[cur->ch - 'a']) {
-                    cur->fail = next->tries[cur->ch - 'a'];
-                    break;
+
+            for (int i = 0; i < ALPHABET; i++) {
+                if (t[x].next[i] == 0) {
+                    t[x].next[i] = t[t[x].link].next[i];
                 }
-                if (next == this)break;
-                next = next->fail;
+                else {
+                    t[t[x].next[i]].link = t[t[x].link].next[i];
+                    q.push(t[x].next[i]);
+                }
             }
         }
     }
+
     std::vector<int> work(std::string s) {
-        auto cur = this;
-        std::vector<int> ans;
-        for (char ch : s) {
-            int c = ch - 'a';
-            while (!cur->tries[c] && cur != this) {
-                cur = cur->fail;
-            }
-            if (cur->tries[c]) {
-                cur = cur->tries[c];
-            }
-            // cur->print();
-            auto next = cur;
-            while (!next->vis) {
-                for (int x : next->end)ans.push_back(x);
-                next->vis = true;
-                next = next->fail;
-            }
+        get_fail();
+        int p = 1;
+        std::vector<int> f(t.size());
+        for (auto c : s) {
+            p = next(p, c - 'a');
+            f[p]++;
         }
-        std::ranges::sort(ans);
-        return ans;
+
+        std::vector<std::vector<int>> adj(t.size());
+        for (int i = 2; i < t.size(); i++) {
+            adj[link(i)].push_back(i);
+        }
+
+        std::function<void(int)> dfs = [&](int x) -> void {
+            for (auto y : adj[x]) {
+                dfs(y);
+                f[x] += f[y];
+            }
+            };
+        dfs(1);
+        return f;
     }
-    void clear() {
-        for (int i = 0;i < 26;++i)if (tries[i]) {
-            tries[i]->clear();
-        }
-        delete this;
+
+    int next(int p, int x) {
+        return t[p].next[x];
     }
-    void print() {
-        auto cur = this;
-        std::string s;
-        while (cur->fail != cur) {
-            s.push_back(cur->ch);
-            cur = cur->Fa;
-        }
-        std::reverse(s.begin(), s.end());
-        std::cout << s << '\n';
+
+    int link(int p) {
+        return t[p].link;
+    }
+
+    int len(int p) {
+        return t[p].len;
+    }
+
+    int size() {
+        return t.size();
     }
 };
 
-bool kmp(std::string& s, std::string& t) {
-    if (t.length() > s.length())return false;
+std::vector<int> get_next(std::string& t) {
     std::vector<int> next(t.size());
     next[0] = -1;
     for (int i = 0, j = -1; i < (int)t.size();) {
@@ -103,6 +115,12 @@ bool kmp(std::string& s, std::string& t) {
         else
             j = next[j];
     }
+    return next;
+}
+
+bool kmp(std::string& s, std::string& t) {
+    if (t.length() > s.length())return false;
+    auto next = get_next(t);
 
     for (int i = 0, j = 0; i < (int)s.size() && j < (int)t.size();) {
         if (j == -1 || s[i] == t[j]) {
@@ -118,19 +136,24 @@ bool kmp(std::string& s, std::string& t) {
 void solve() {
     int n;std::cin >> n;
     std::string a, c;std::cin >> a >> c;
-    Trie* trie = new Trie();
+    AhoCorasick ac;
+    std::vector<int> end(n + 1);
     for (int i = 1;i <= n;++i) {
         std::string b, b_;
         std::cin >> b >> b_;
         if (kmp(b_, c)) {
-            trie->join_trie(b, i);
+            end[i] = ac.add(b);
         }
     }
-    trie->get_fail();
-    auto ans = trie->work(a);
+    std::vector<int> f = ac.work(a);
+
+    std::vector<int> ans;
+    for (int i = 1; i <= n; i++) {
+        if (f[end[i]])ans.push_back(i);
+    }
+
     for (int i = 0;i < ans.size();++i)
         std::cout << ans[i] << " \n"[i == ans.size() - 1];
-    trie->clear();
 }
 
 signed main() {
