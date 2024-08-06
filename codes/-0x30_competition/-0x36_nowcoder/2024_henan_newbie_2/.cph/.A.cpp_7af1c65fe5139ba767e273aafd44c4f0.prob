@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\A.cpp","tests":[{"id":1721797463798,"input":"5 5 3\n10 19 5 7 12\n1 2\n2 3\n3 4\n4 5\n5 1\n1\n4\n5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\A.cpp","group":"local","local":true}
