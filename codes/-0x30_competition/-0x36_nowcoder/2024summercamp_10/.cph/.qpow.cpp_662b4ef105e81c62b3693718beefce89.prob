@@ -1,0 +1,1 @@
+{"name":"Local: qpow","url":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\qpow.cpp","tests":[{"id":1723375352999,"input":"3\n16\n4\n2 3\n3 4\n4 5\n5 6\n36123\n1\n2374859 3029382\n17\n1\n3 18132","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\qpow.cpp","group":"local","local":true}
