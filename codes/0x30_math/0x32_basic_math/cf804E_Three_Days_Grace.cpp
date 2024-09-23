@@ -19,16 +19,28 @@ const int mod = 998244353;
 
 void solve() {
     int n, m;std::cin >> n >> m;
-    std::vector<int> appear(m + 1), mex(m + 1), dp(m + 1);
-    int maxele = m;
+    std::vector<i64> appear(m + 1), mex(m + 1), dp(m + 1);
+    int min = inf, max = 0;
     for (int i = 0;i < n;++i) {
         int x;std::cin >> x;
-        appear[x] = 1;
+        appear[x]++;
+        mex[x]++;
+        min = std::min(min, x);
+        max = std::max(max, x);
     }
-    for (int i = 1;i <= m;++i)dp[i] = i;
-    for (int L = m;L >= 1;--L) {
-        
+    for (int i = 0;i <= max;++i)dp[i] = i;
+    int ans = max - min;
+    int p = max;
+    for (int L = max;L >= 1;--L) {
+        for (i64 i = 1ll * L * L;i <= max;i += L) {
+            if (appear[i])mex[dp[i]] -= appear[i];
+            dp[i] = std::min(dp[i], dp[i / L]);
+            if (appear[i])mex[dp[i]] += appear[i];
+        }
+        while (!mex[p])p--;
+        if (L <= min)ans = std::min(ans, p - L);
     }
+    std::cout << ans;
 }
 
 signed main() {
