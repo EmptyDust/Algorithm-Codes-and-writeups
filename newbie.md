@@ -28,6 +28,8 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 笔者C语言最终成绩99分。
 
 #### 加强编程能力
+笔者C语言期末考试半小时就跑路了。
+
 一些985/211的研究生导师声称他们的很多学生代码能力极弱，有同学需要从C语言手把手教起，而算法竞赛出身的同学完全没有这种极其低级的问题。（信息来源于笔者在教练QQ群窥屏）
 
 #### 就业
@@ -58,7 +60,7 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 
 ### 上海电力大学计算机学院在相关方向的课程
 上电计算机学院的算法相关的课程教学路线如下表。
-| 学期   | 课程                 | 专业                       |
+| 学期   | 课程                 | 授课范围                   |
 | ------ | -------------------- | -------------------------- |
 | 大一上 | C语言程序设计        | 全校                       |
 | 大一下 | JAVA面向对象编程语言 | 计算机学院（除信息安全外） |
@@ -77,7 +79,9 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 
 ## 公告栏
 
-**如果你看了上面的前言后，对算法竞赛感兴趣或者仍然存有一些疑惑，欢迎加入我们的[QQ群](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kFtpoBfcFKE8wRe2GG-L5RVFN9UPid9S&authKey=X3snUIdteuoJNfHoxHBUhd3zPN%2F5PnfxGn3Frtl9C1bQYl5g2tnlzqCYpEHCFuHo&noverify=0&group_code=726427904)交流**
+**如果你看了上面的前言后，对算法竞赛感兴趣或者仍然存有一些疑惑，欢迎加入我们的[QQ群](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kFtpoBfcFKE8wRe2GG-L5RVFN9UPid9S&authKey=X3snUIdteuoJNfHoxHBUhd3zPN%2F5PnfxGn3Frtl9C1bQYl5g2tnlzqCYpEHCFuHo&noverify=0&group_code=726427904)交流。**
+
+**我们将在2024年10月11日星期五在学校机房举行上海电力大学程序设计新生赛，将允许2023级及2024级同学参与，比赛规则为单人[ICPC赛制](https://oi-wiki.org/contest/icpc/#%E8%B5%9B%E5%88%B6%E4%BB%8B%E7%BB%8D)，罚时五分钟，中文题面，允许携带任意纸质资料，使用机房电脑但允许自带键盘，允许使用包括C,C++,JAVA,Python在内的各大主流语言，排名以通过题数为第一关键字降序，罚时为第二关键字升序排列。两个年级分开评奖，2024级新生中的优秀同学将被选拔参与于10月13日举行的临港联合程序设计新生赛。感兴趣的同学请加入我们的[QQ群](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kFtpoBfcFKE8wRe2GG-L5RVFN9UPid9S&authKey=X3snUIdteuoJNfHoxHBUhd3zPN%2F5PnfxGn3Frtl9C1bQYl5g2tnlzqCYpEHCFuHo&noverify=0&group_code=726427904)获取最新情报。**
 
 ## 第一步 学习C++
 其实C++在面向过程这部分语法与C语言基本完全相同，你可以放心学习，因为期末要考。
@@ -105,11 +109,12 @@ C++资源库-C++STL教程中所提到的内容需要学习。
 ### 纸质资料
 
 **李春葆 数据结构（C++语言描述）第六版**\
-该书每节课后有一些练习题，可以挑选一些练习。\
+该书每节课后有一些练习题，可以在Leetcode上评测，建议挑选其中一些练习。\
 笔者用该书自学。
 
 **李春葆 数据结构（JAVA语言描述）**\
 这是计算机学院除信息安全外其他三个专业大二同名课程的课本。
+这本书很好，但课上往往将难点通通略过（当然考试也不考）。
 
 ### 第三步 学习算法基础 （or 随时可以开始？）
 这不是课内要学的，请谨慎学习。\
@@ -138,3 +143,7 @@ C++资源库-C++STL教程中所提到的内容需要学习。
 笔者个人主推的网站，重视思维，题目质量基本都是原创且质量很高，英语不好的同学可以下载浏览器插件 [Codeforces Better](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better#google_vignette) 。
 
 - **TBD**
+
+
+# 参考文献
+[markdown 教程](https://markdown.com.cn/basic-syntax/htmls.html)
