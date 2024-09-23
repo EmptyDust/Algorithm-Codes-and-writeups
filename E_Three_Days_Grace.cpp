@@ -18,24 +18,16 @@ const int inf = 1e9;
 const int mod = 998244353;
 
 void solve() {
-    int n, q;std::cin >> n >> q;
-    std::vector<i64> a(2 * n), pre(2 * n + 1);
+    int n, m;std::cin >> n >> m;
+    std::vector<int> appear(m + 1), mex(m + 1), dp(m + 1);
+    int maxele = m;
     for (int i = 0;i < n;++i) {
-        std::cin >> a[i];
-        a[i + n] = a[i];
+        int x;std::cin >> x;
+        appear[x] = 1;
     }
-    for (int i = 0;i < 2 * n;++i)
-        pre[i + 1] = pre[i] + a[i];
-
-    auto query = [&](i64 x) {
-        i64 res = x / n * pre[n];
-        i64 st = x / n;
-        res += pre[st + x % n] - pre[st];
-        return res;
-        };
-    while (q--) {
-        i64 l, r;std::cin >> l >> r;l--;
-        std::cout << query(r) - query(l) << '\n';
+    for (int i = 1;i <= m;++i)dp[i] = i;
+    for (int L = m;L >= 1;--L) {
+        
     }
 }
 
@@ -45,6 +37,7 @@ signed main() {
     int t;std::cin >> t;
     while (t--) {
         solve();
+        std::cout << '\n';
     }
     return 0;
 }
