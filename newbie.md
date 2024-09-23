@@ -1,4 +1,7 @@
 # 上海电力大学计算机算法竞赛路线
+持续更新中……
+如果对本文档有建议，可以联系作者QQ:1422492074。
+
 ## 前言
 欢迎来到上海电力大学，本教程适合符合以下任意标准的同学:
 1. 热爱计算机；
@@ -136,11 +139,16 @@ C++资源库-C++STL教程中所提到的内容需要学习。
 **accepted**使人快乐，我热爱做题！通过做题提升自身思维，完善巩固知识点，寓教于乐。\
 笔者站此派。
 
-#### 一些做题网站
+#### 一些实用网站
 [luogu](www.luogu.com.cn) \
 中学信息竞赛同学热衷的网站，题目很全，建议在学习新知识点时可以在这个网站刷题，但存在低龄化、比赛题目偏门的问题。\
 [codeforces](https://codeforces.com/)\
-笔者个人主推的网站，重视思维，题目质量基本都是原创且质量很高，英语不好的同学可以下载浏览器插件 [Codeforces Better](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better#google_vignette) 。
+笔者个人主推的网站，重视思维，题目质量基本都是原创且质量很高，英语不好的同学可以下载浏览器插件 [Codeforces Better](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better#google_vignette) 。\
+推荐已经掌握C语言基本语法的新手可以尝试Virtual Participate Div.4级别的比赛，感受算法题的大致情况。\
+[atcoder](https://atcoder.jp/)\
+日本的网站，推荐大家可以参与Atcoder Beginner Contest，题目涉及知识点多，但经常出现原题，适合查漏补缺。\
+[oi-wiki](https://oi-wiki.org/)\
+这里有很全的算法竞赛介绍，你可以将它看作一个大纲，然后去知乎或google学习，因为这里讲的有些深奥，适合查漏补缺，对新手来说比较难以理解。
 
 - **TBD**
 
