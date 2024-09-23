@@ -1,0 +1,15 @@
+"Participate in large regionals if you want to win gold medals; participate in small regionals if you want to get the qualify to WF…"
+
+There will be n teams participating in the 2024 ICPC Regional Contests numbered from 1 to n. Each team can be described by a positive integer represents its comprehensive strength and a string represents the abbreviation of the university it belongs to. In this problem, we guarantee that the abbreviation of each university is unique and the comprehensive strengths of the teams are pairwise distinct. We also assume that the stronger team will always be ranked ahead of the weaker team in any contest.
+
+This year, k regional contests will be held. For the i-th regional contest, every university can select no more than c 
+i
+​
+  teams to join the contest. Meanwhile, each team can select no more than 2 regional contests to participate in.
+
+Now, you are asked to calculate the smallest possible rank for each team in the worst case, if they choose the regionals optimally. Note that when a team registers, it does not know the registration strategy of other teams, even if they are from the same university (but the total number of teams in the same university for the i-th regional contest is still limited by the c 
+i
+​
+ , and we always assume that the team currently under consideration has priority to register).
+
+Please refer to the samples to understand the problem better.
