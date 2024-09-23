@@ -18,25 +18,21 @@ const int inf = 1e9;
 const int mod = 998244353;
 
 void solve() {
-    int n, q;std::cin >> n >> q;
-    std::vector<i64> a(2 * n), pre(2 * n + 1);
-    for (int i = 0;i < n;++i) {
-        std::cin >> a[i];
-        a[i + n] = a[i];
+    int n;std::cin >> n;
+    std::vector<int> t(n), vis(2 * n + 1);
+    for (int& x : t)std::cin >> x;
+    ranges::sort(t);
+    std::vector<int> dp(n + 1, inf);
+    dp[0] = 0;
+    for (int i = 1;i <= 2 * n;++i) {
+        std::vector<int> ndp(n + 1, inf);
+        for (int j = 0;j <= n;++j) {
+            ndp[j] = dp[j];
+            if (j)ndp[j] = std::min(ndp[j], dp[j - 1] + std::abs(t[j - 1] - i));
+        }
+        dp = ndp;
     }
-    for (int i = 0;i < 2 * n;++i)
-        pre[i + 1] = pre[i] + a[i];
-
-    auto query = [&](i64 x) {
-        i64 res = x / n * pre[n];
-        i64 st = x / n;
-        res += pre[st + x % n] - pre[st];
-        return res;
-        };
-    while (q--) {
-        i64 l, r;std::cin >> l >> r;l--;
-        std::cout << query(r) - query(l) << '\n';
-    }
+    std::cout << dp[n];
 }
 
 signed main() {
@@ -45,6 +41,7 @@ signed main() {
     int t;std::cin >> t;
     while (t--) {
         solve();
+        std::cout << '\n';
     }
     return 0;
 }

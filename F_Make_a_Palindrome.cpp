@@ -18,25 +18,22 @@ const int inf = 1e9;
 const int mod = 998244353;
 
 void solve() {
-    int n, q;std::cin >> n >> q;
-    std::vector<i64> a(2 * n), pre(2 * n + 1);
-    for (int i = 0;i < n;++i) {
-        std::cin >> a[i];
-        a[i + n] = a[i];
+    int n;std::cin >> n;
+    std::vector<int> a(n), p(n + 1);
+    for (int& x : a)std::cin >> x;
+    for (int i = 1;i <= n;++i)p[i] = p[i - 1] + a[i - 1];
+    std::map<int, int> cnt;
+    int ans = 0;
+    for (int len = 0;len <= n;++len) {
+        for (int i = 0;i <= n - len;++i) {
+            int s = p[i + len] + p[i];
+            ans += len;
+            ans -= 2 * cnt[s];
+            ans -= (s % 2 || !std::binary_search(p.begin(), p.end(), s / 2));
+            cnt[s]++;
+        }
     }
-    for (int i = 0;i < 2 * n;++i)
-        pre[i + 1] = pre[i] + a[i];
-
-    auto query = [&](i64 x) {
-        i64 res = x / n * pre[n];
-        i64 st = x / n;
-        res += pre[st + x % n] - pre[st];
-        return res;
-        };
-    while (q--) {
-        i64 l, r;std::cin >> l >> r;l--;
-        std::cout << query(r) - query(l) << '\n';
-    }
+    std::cout << ans;
 }
 
 signed main() {
@@ -45,6 +42,7 @@ signed main() {
     int t;std::cin >> t;
     while (t--) {
         solve();
+        std::cout << '\n';
     }
     return 0;
 }

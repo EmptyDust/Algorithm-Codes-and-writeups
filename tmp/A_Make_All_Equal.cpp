@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 
 #define ranges std::ranges
@@ -18,25 +19,16 @@ const int inf = 1e9;
 const int mod = 998244353;
 
 void solve() {
-    int n, q;std::cin >> n >> q;
-    std::vector<i64> a(2 * n), pre(2 * n + 1);
-    for (int i = 0;i < n;++i) {
-        std::cin >> a[i];
-        a[i + n] = a[i];
+    int n;std::cin >> n;
+    std::vector<int> a(n);
+    for (int& x : a)std::cin >> x;
+    std::map<int, int> mp;
+    for (int x : a)mp[x]++;
+    int ans = inf;
+    for (auto [x, y] : mp) {
+        ans = std::min(ans, n - y);
     }
-    for (int i = 0;i < 2 * n;++i)
-        pre[i + 1] = pre[i] + a[i];
-
-    auto query = [&](i64 x) {
-        i64 res = x / n * pre[n];
-        i64 st = x / n;
-        res += pre[st + x % n] - pre[st];
-        return res;
-        };
-    while (q--) {
-        i64 l, r;std::cin >> l >> r;l--;
-        std::cout << query(r) - query(l) << '\n';
-    }
+    std::cout << ans;
 }
 
 signed main() {
@@ -45,6 +37,7 @@ signed main() {
     int t;std::cin >> t;
     while (t--) {
         solve();
+        std::cout << '\n';
     }
     return 0;
 }
