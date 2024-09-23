@@ -1,6 +1,9 @@
 # 上海电力大学计算机算法竞赛路线
-持续更新中……
+持续更新中……喜欢请点个收藏喵~\
 如果对本文档有建议，可以联系作者QQ:1422492074。
+
+## 公告栏
+**我们将在2024年10月11日星期五在学校机房举行上海电力大学程序设计新生赛，将允许2023级及2024级同学参与，比赛规则为单人[ICPC赛制](https://oi-wiki.org/contest/icpc/#%E8%B5%9B%E5%88%B6%E4%BB%8B%E7%BB%8D)，罚时五分钟，中文题面，允许携带任意纸质资料，使用机房电脑但允许自带键盘，允许使用包括C,C++,JAVA,Python在内的各大主流语言，排名以通过题数为第一关键字降序，罚时为第二关键字升序排列。两个年级分开评奖，2024级新生中的优秀同学将被选拔参与于10月13日举行的临港联合程序设计新生赛。感兴趣的同学请加入我们的[QQ群](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kFtpoBfcFKE8wRe2GG-L5RVFN9UPid9S&authKey=X3snUIdteuoJNfHoxHBUhd3zPN%2F5PnfxGn3Frtl9C1bQYl5g2tnlzqCYpEHCFuHo&noverify=0&group_code=726427904)获取最新情报。**
 
 ## 前言
 欢迎来到上海电力大学，本教程适合符合以下任意标准的同学:
@@ -80,11 +83,9 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 
 相信如果聪明的你略有信息搜集能力，就能查到不少……哦不，极其大量的网课，甚至还许多想要爆你金币。当然，看视频教学，做上一大本笔记往往能够在最终考试中获得很高的成绩，但这样往往速度过慢，由于容易理解，经常造成误判以为自己懂了，最终实际代码水平令人感到遗憾。
 
-## 公告栏
+## 联系方式
 
 **如果你看了上面的前言后，对算法竞赛感兴趣或者仍然存有一些疑惑，欢迎加入我们的[QQ群](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kFtpoBfcFKE8wRe2GG-L5RVFN9UPid9S&authKey=X3snUIdteuoJNfHoxHBUhd3zPN%2F5PnfxGn3Frtl9C1bQYl5g2tnlzqCYpEHCFuHo&noverify=0&group_code=726427904)交流。**
-
-**我们将在2024年10月11日星期五在学校机房举行上海电力大学程序设计新生赛，将允许2023级及2024级同学参与，比赛规则为单人[ICPC赛制](https://oi-wiki.org/contest/icpc/#%E8%B5%9B%E5%88%B6%E4%BB%8B%E7%BB%8D)，罚时五分钟，中文题面，允许携带任意纸质资料，使用机房电脑但允许自带键盘，允许使用包括C,C++,JAVA,Python在内的各大主流语言，排名以通过题数为第一关键字降序，罚时为第二关键字升序排列。两个年级分开评奖，2024级新生中的优秀同学将被选拔参与于10月13日举行的临港联合程序设计新生赛。感兴趣的同学请加入我们的[QQ群](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kFtpoBfcFKE8wRe2GG-L5RVFN9UPid9S&authKey=X3snUIdteuoJNfHoxHBUhd3zPN%2F5PnfxGn3Frtl9C1bQYl5g2tnlzqCYpEHCFuHo&noverify=0&group_code=726427904)获取最新情报。**
 
 ## 第一步 学习C++
 其实C++在面向过程这部分语法与C语言基本完全相同，你可以放心学习，因为期末要考。
@@ -141,17 +142,16 @@ C++资源库-C++STL教程中所提到的内容需要学习。
 
 #### 一些实用网站
 [luogu](www.luogu.com.cn) \
-中学信息竞赛同学热衷的网站，题目很全，建议在学习新知识点时可以在这个网站刷题，但存在低龄化、比赛题目偏门的问题。\
+中学信息竞赛同学热衷的网站，题目很全，建议在学习新知识点时可以在这个网站刷题，但可能存在社区低龄化、过度的自谦、个人崇拜主义、比赛题目偏门等问题。\
 [codeforces](https://codeforces.com/)\
 笔者个人主推的网站，重视思维，题目质量基本都是原创且质量很高，英语不好的同学可以下载浏览器插件 [Codeforces Better](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better#google_vignette) 。\
 推荐已经掌握C语言基本语法的新手可以尝试Virtual Participate Div.4级别的比赛，感受算法题的大致情况。\
 [atcoder](https://atcoder.jp/)\
 日本的网站，推荐大家可以参与Atcoder Beginner Contest，题目涉及知识点多，但经常出现原题，适合查漏补缺。\
 [oi-wiki](https://oi-wiki.org/)\
-这里有很全的算法竞赛介绍，你可以将它看作一个大纲，然后去知乎或google学习，因为这里讲的有些深奥，适合查漏补缺，对新手来说比较难以理解。
+这里有很全的算法竞赛介绍，你可以将它看作一个大纲，然后去知乎或google学习，因为这里讲的有些深奥，适合查漏补缺，对新手来说可能比较难以理解。
 
 - **TBD**
-
 
 # 参考文献
 [markdown 教程](https://markdown.com.cn/basic-syntax/htmls.html)
