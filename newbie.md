@@ -34,7 +34,6 @@
 2.使用学校电脑参赛，允许自带键鼠。
 #### 竞赛咨询和联系方式
 竞赛交流QQ群: 726427904\
-建议加入QQ群以获取竞赛最新消息和算法竞赛学习路线。\
 期待各位同学积极报名参与，祝全体参赛同学获得优异成绩。
 
 ![](https://img.picui.cn/free/2024/09/23/66f17b3379bf6.jpg)
@@ -120,8 +119,6 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 ## 联系方式
 
 **如果你看了上面的前言后，对算法竞赛感兴趣或者仍然存有一些疑惑，欢迎加入我们的[QQ群 726427904](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kFtpoBfcFKE8wRe2GG-L5RVFN9UPid9S&authKey=X3snUIdteuoJNfHoxHBUhd3zPN%2F5PnfxGn3Frtl9C1bQYl5g2tnlzqCYpEHCFuHo&noverify=0&group_code=726427904)交流。**
-
-![](https://img.picui.cn/free/2024/09/23/66f17b3379bf6.jpg)
 
 ## 第一步 学习C++
 其实C++在面向过程这部分语法与C语言基本完全相同，你可以放心学习，因为期末要考。
