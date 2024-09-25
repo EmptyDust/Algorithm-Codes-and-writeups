@@ -37,7 +37,7 @@
 1.奖项及奖品待定。\
 2.比赛中表现优秀的同学有机会代表学校参加国际大学生程序设计竞赛(ICPC)等各类赛事，2024级优胜者将代表学校参加10月13日举办的2024年临港五校新生程序设计竞赛。
 #### 报名须知
-1.请有意参赛的同学提前在[牛客](https://ac.nowcoder.com/)上注册账号，并在10月3日晚上20:00前[报名](https://f.wps.cn/g/gpKswdI2/)。\
+1.请有意参赛的同学提前在[牛客](https://ac.nowcoder.com/)上注册账号，并**于10月3日晚上20:00前[填写报名表](https://f.wps.cn/g/gpKswdI2/)**。\
 2.使用学校电脑参赛，允许自带键鼠。
 #### 竞赛咨询和联系方式
 竞赛交流QQ群: 726427904\
@@ -162,7 +162,7 @@ C++资源库-C++STL教程中所提到的内容需要学习。
 #### 题单
 
 - [luogu-栈与队列](https://www.luogu.com.cn/training/113)
-- [luogu-基础算法](https://www.luogu.com.cn/training/2929)
+- [luogu-二叉树](https://www.luogu.com.cn/training/114)
 
 ### 纸质资料
 
@@ -199,6 +199,7 @@ C++资源库-C++STL教程中所提到的内容需要学习。
 - [luogu-排序](https://www.luogu.com.cn/training/107)
 - [luogu-二分](https://www.luogu.com.cn/training/111)
 - [luogu-分治](https://www.luogu.com.cn/training/202)
+- [luogu-其他基础算法](https://www.luogu.com.cn/training/2929)
 - [atcoder-DP](https://atcoder.jp/contests/dp/tasks)
 
 #### 一些实用网站
