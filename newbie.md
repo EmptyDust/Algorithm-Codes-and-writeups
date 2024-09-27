@@ -71,6 +71,8 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 
 [参考文献(oi-wiki)](https://oi-wiki.org/contest/icpc/)
 
+> 其他在教育部A类赛事名单中的算法类型竞赛还有百度之星、程序设计天梯赛、蓝桥杯。
+
 ### 我为什么选择参与算法竞赛
 #### 提高学习成绩
 笔者C语言最终成绩99分。
