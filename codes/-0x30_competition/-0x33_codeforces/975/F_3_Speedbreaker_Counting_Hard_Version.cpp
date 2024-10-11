@@ -8,6 +8,7 @@ using i64 = long long;
 using u64 = unsigned long long;
 
 using pii = std::pair<int, int>;
+using a2 = std::array<i64, 2>;
 using a3 = std::array<int, 3>;
 using a4 = std::array<int, 4>;
 
@@ -15,56 +16,52 @@ const int N = 1e6;
 const int MAXN = 1e6 + 10;
 const int inf = 1e9;
 // const int mod = 1e9 + 7;
-int mod = 998244353;
-
-
-i64 qpow(i64 x, i64 p) {
-    i64 ret = 1;
-    while (p) {
-        if (p & 1)ret = ret * x % mod;
-        p >>= 1;
-        x = x * x % mod;
-    }
-    return ret;
-}
-
-#define inv(x) qpow(x,mod-2)
-
-std::vector<int> fact(1, 1);
-std::vector<int> inv_fact(1, 1);
-i64 comb(int n, int k) {
-    if (k<0 || k>n)return 0;
-    while ((int)fact.size() < n + 1) {
-        fact.push_back(1ll * fact.back() * (int)fact.size() % mod);
-        inv_fact.push_back(inv(fact.back()));
-    }
-    return 1ll * fact[n] * inv_fact[k] % mod * inv_fact[n - k] % mod;
-}
+const int mod = 998244353;
 
 void solve() {
-    i64 n, p;std::cin >> n >> p;
-    mod = p;
-    std::vector<i64> ans(n + 1);
-    ans[0] = qpow(n, n);
-    for (int i = 1;i <= n;++i) {
-        // ans[i] = i * qpow(n - i + 1, i - 1) % mod;
-        ans[i] = ((qpow(n - i + 1, i) - qpow(n - i, i)) % mod + mod) % mod;
-        // for (int j = 2;j <= i;++j) {
-        //     ans[i] = 2 * ans[i] * (n - j) % mod;
-        // }
-        i64 C = 0;
-        for (int a = 0;a <= n - i;++a) {
-            int b = n - i - a;
-            C = (C + comb(a, a + b)) % mod;
+    int n, p;std::cin >> n >> p;
+    std::vector dp(n + 1, std::vector<a2>(n + 1));
+    for (int l = 1;l <= n;++l) {
+        for (int r = n;r >= l;--r) {
+            if (l == 1 && r == n)dp[l][r][1] = 1;
+            else {
+                int len = r - l + 1;
+                if (r != n)
+                    dp[l][r][1] = (dp[l][r][1] + dp[l][r + 1][1] * (n - len) % p + dp[l][r + 1][0]) % p;
+                if (l != 1)
+                    dp[l][r][0] = (dp[l][r][0] + (dp[l - 1][r][0] + dp[l - 1][r][1]) * (n - len) % p) % p;
+            }
         }
-        ans[i] = ans[i] * C % mod;
-        for (int j = i + 1;j <= n;++j) {
-            ans[i] = ans[i] * (n - j + 1) % mod;
-        }
-        ans[0] = ((ans[0] - ans[i]) % mod + mod) % mod;
-
     }
-    for (int i = 0;i <= n;++i)std::cout << ans[i] << ' ';
+    std::vector<i64> g(n + 1, 1);
+    for (int k = 0;k < n;++k) {
+        for (int i = 0;i <= k;++i) {
+            g[k] = g[k] * (n - k + std::min(i, k - i)) % p;
+        }
+    }
+    std::vector<i64> ans(n + 1);
+    for (int l = 1;l <= n;++l) {
+        for (int r = l;r <= n;++r) {
+            int len = r - l + 1;
+            ans[len] = (ans[len] + g[r - l] * (dp[l][r][0] + dp[l][r][1]) % p) % p;
+        }
+    }
+    for (int i = n;i >= 1;--i) {
+        for (int j = i - 1;j >= 1;--j) {
+            ans[j] = ((ans[j] - ans[i] * (i - j + 1) % p) % p + p) % p;
+        }
+    }
+    i64 ans0 = 1;
+    for (int i = 1;i <= n;++i) {
+        ans0 = ans0 * n % p;
+    }
+    for (int i = 1;i <= n;++i) {
+        ans0 = ((ans0 - ans[i]) % p + p) % p;
+    }
+    ans[0] = ans0;
+    for (int i = 0;i <= n;++i) {
+        std::cout << ans[i] << " ";
+    }
 }
 
 signed main() {
