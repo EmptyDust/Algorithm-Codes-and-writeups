@@ -8,7 +8,8 @@ using i64 = long long;
 using u64 = unsigned long long;
 
 using pii = std::pair<int, int>;
-using a3 = std::array<int, 3>;
+using a2 = std::array<i64, 2>;
+using a3 = std::array<i64, 3>;
 using a4 = std::array<int, 4>;
 
 const int N = 1e6;
@@ -21,19 +22,30 @@ void solve() {
     int n, m, k;std::cin >> n >> m >> k;
     std::vector<int> a(n);
     for (int& x : a)std::cin >> x;
-    std::vector<int> dp(k + 1);
-    for (int i = 0;i < n;++i) {
-        std::vector<int> ndp(k + 1, inf);
-        for (int j = 0;j <= k;++j) {
-            ndp[0] = std::min(ndp[0], dp[j] + a[i]);
-        }
-        for (int j = 1;j <= k;++j) {
-            ndp[j] = dp[j - 1] + 1;
-        }
-        dp = ndp;
-        for (int j = 0;j <= k;++j)std::cout << dp[j] << ' ';std::cout << '\n';
+    std::vector adj(n, std::vector<int>());
+    for (int i = 0;i < m;++i) {
+        int u, v;std::cin >> u >> v;u--, v--;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-    std::cout << *std::min_element(dp.begin(), dp.end());
+    std::vector dp(k + 1, std::vector<i64>(n, -1));
+    std::priority_queue<a3, std::vector<a3>, std::greater<a3>> pq;
+    pq.push({ 1,1,0 });
+    pq.push({ a[0],0,0 });
+    while (pq.size()) {
+        auto [dis, cnt, u] = pq.top();
+        pq.pop();
+        if (cnt > k || ~dp[cnt][u])continue;
+        if (u == n - 1) {
+            std::cout << dis;
+            return;
+        }
+        dp[cnt][u] = dis;
+        for (auto& v : adj[u]) {
+            pq.push({ dis + 1, cnt + 1,v });
+            pq.push({ dis + a[v], 0,v });
+        }
+    }
 }
 
 signed main() {
