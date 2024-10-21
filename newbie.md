@@ -169,7 +169,7 @@ C++资源库-C++STL教程中所提到的内容需要学习。
 中学信息竞赛同学热衷的网站，题目很全，建议在学习新知识点时可以在这个网站刷题，但可能存在社区低龄化、过度的自谦、个人崇拜主义、比赛题目偏门等问题。
 - [codeforces](https://codeforces.com/)\
 笔者个人主推的网站，重视思维，题目质量基本都是原创且质量很高，英语不好的同学可以下载浏览器插件 [Codeforces Better](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better#google_vignette) 。
-推荐已经掌握C语言基本语法的新手可以尝试Virtual Participate Div.4级别的比赛，感受算法题的大致情况。\
+推荐已经掌握C语言基本语法的新手可以尝试Virtual Participate Div.4级别的比赛，感受算法题的大致情况。
 - [atcoder](https://atcoder.jp/)\
 日本的网站，推荐大家可以参与Atcoder Beginner Contest，题目涉及知识点多，但经常出现原题，适合查漏补缺。
 - [oi-wiki](https://oi-wiki.org/)\
@@ -188,3 +188,39 @@ https://www.luogu.com.cn/training/322521
 
 # 参考文献
 [markdown 教程](https://markdown.com.cn/basic-syntax/htmls.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 测试区
+
+## letax
+
+$ \sqrt[3]{\frac{x^3+y^3}{2}} $
+
+$$
+\sum^{100}_{x=1}(x+1)
+$$
+
+$ a \times b $
