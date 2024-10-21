@@ -1,7 +1,8 @@
 # 风铃的算法笔记
- Fengling's algorithm codes and writeups\
- 文件目录已施工完毕\
- 文件名中的前两个字母可对照下表找到网站，再进一步搜索题号即可找到题目。
+[我的算法竞赛学习路线指北](https://acm.emptydust.com/)\
+Fengling's algorithm codes and writeups\
+文件目录已施工完毕\
+文件名中的前两个字母可对照下表找到网站，再进一步搜索题号即可找到题目。
 | 网站             | 网址                     | 简称 | 我的账号                                              | 是否活跃 |
 | ---------------- | ------------------------ | ---- | ----------------------------------------------------- | -------- |
 | 力扣             | www.leetcode.cn          | lc   | www.leetcode.cn/u/feng-ling-ye-xing/                  | √        |
