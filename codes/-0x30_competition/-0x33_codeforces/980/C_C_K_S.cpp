@@ -8,6 +8,7 @@ using i64 = long long;
 using u64 = unsigned long long;
 
 using pii = std::pair<int, int>;
+using a2 = std::array<int, 2>;
 using a3 = std::array<int, 3>;
 using a4 = std::array<int, 4>;
 
@@ -17,30 +18,37 @@ const int inf = 1e9;
 // const int mod = 1e9 + 7;
 const int mod = 998244353;
 
-bool isbimap(std::vector<std::vector<int>>& adj, std::vector<int> b){
+std::vector<pii> cal(std::vector<std::vector<int>>& adj, std::vector<int>& a, int k){
     int n = adj.size();
-    for (int u = 0;u < n;++u){
-        // if (adj[u].size() % 2)return false;//完全欧拉图
-        for (auto v : adj[u])
-            if (b[v] == b[u])
-                return false;
-    }
-    return true;
+    std::vector<pii> res(k);
+    std::vector<int> vis(n);
+    std::function<void(int, int)> dfs = [&](int u, int p){
+        if (vis[u])return;
+        vis[u] = 1;
+        if (a[u])
+            res[p].first++;
+        else res[p].second++;
+        for (int v : adj[u])
+            dfs(v, (p + 1) % k);
+        };
+    dfs(0, 0);
+    return res;
 }
 
-pii cal(std::vector<std::vector<int>>& adj, std::vector<int> b){
-    int n = adj.size();
-    std::vector<int> color(n, -1);
-    int cnt0 = 0, cnt1 = 0;
-    std::function<void(int, int)> dfs = [&](int u, int x){
-        if (color[u] == -1)color[u] = x;
-        else return;
-        if (color[u])cnt1 += b[u];
-        else cnt0 += b[u];
-        for (int v : adj[u])dfs(v, !x);
-        };
-    dfs(0, 1);
-    return pii{ cnt0,cnt1 };
+std::vector<int> z_function(std::vector<int> s) {
+    int n = (int)s.size();
+    std::vector<int> z(n);
+    for (int i = 1, l = 0, r = 0; i < n; ++i) {
+        if (i <= r && z[i - l] < r - i + 1) {
+            z[i] = z[i - l];
+        }
+        else {
+            z[i] = std::max(0, r - i + 1);
+            while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
+        }
+        if (i + z[i] - 1 > r) l = i, r = i + z[i] - 1;
+    }
+    return z;
 }
 
 void solve() {
@@ -53,8 +61,8 @@ void solve() {
         int u, v;std::cin >> u >> v;
         u--, v--;
         adj1[u].push_back(v);
-        adj1[v].push_back(u);
     }
+    auto num1 = cal(adj1, a, k);
     std::vector<int> b(n);
     for (int& x : b)std::cin >> x;
     int m2;std::cin >> m2;
@@ -63,7 +71,6 @@ void solve() {
         int u, v;std::cin >> u >> v;
         u--, v--;
         adj2[u].push_back(v);
-        adj2[v].push_back(u);
     }
     if (std::count(a.begin(), a.end(), 0) != std::count(b.begin(), b.end(), 1)){
         std::cout << "NO";
@@ -73,24 +80,31 @@ void solve() {
         std::cout << "YES";
         return;
     }
-    if (k != 2 && k != 4){
-        std::cout << "NO";
-        return;
+    auto num2 = cal(adj2, b, k);
+
+    std::vector<int> s(k), t(k);
+    for (int i = 0;i < k;++i){
+        auto [x1, y1] = num1[i];
+        s[(i + 1) % k] += x1 * n;
+        s[(i - 1 + k) % k] += y1;
+
+        auto [x2, y2] = num2[i];
+        t[i] += x2;
+        t[i] += y2 * n;
     }
-    if (k == 2){
-        auto [c1a, c1b] = cal(adj1, a);
-        auto [c2a, c2b] = cal(adj2, b);
-        // std::cout << c1a << ' ' << c1b << '\n';
-        if (c1a == n / 2 - c2b && c1b == n / 2 - c2a || c1a == n / 2 - c2a && c1b == n / 2 - c2b){
+
+    s.push_back(-1);
+    s.insert(s.end(), t.begin(), t.end());
+    s.insert(s.end(), t.begin(), t.end());
+
+    auto z = z_function(s);
+    for (int i = k + 1;i <= 3 * k;++i){
+        if (z[i] == k){
             std::cout << "YES";
+            return;
         }
-        else std::cout << "NO";
-        return;
     }
-    if (isbimap(adj1, a) && isbimap(adj2, b)){
-        std::cout << "YES";
-    }
-    else std::cout << "NO";
+    std::cout << "NO";
 }
 
 signed main() {
