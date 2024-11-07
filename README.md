@@ -22,3 +22,6 @@ Fengling's algorithm codes and writeups\
 # 模板库
 1. 算法模板大全\
 www.github.com/EmptyDust/Algorithm-Codes-and-writeups/blob/main/codes/-0x20_misc/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E8%AF%BE%E6%A8%A1%E6%9D%BF%E5%A4%A7%E5%85%A8.md
+
+2. 算法竞赛指北\
+acm.emptydust.com
