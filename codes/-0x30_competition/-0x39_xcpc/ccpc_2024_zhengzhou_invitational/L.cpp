@@ -10,7 +10,7 @@ signed main() {
     std::cin >> n >> m;
     for (int i = 1;i <= m;++i)std::cin >> nums[i];
     std::vector<i64> dp(m + 1, inf);dp[0] = 0;
-    for (int i = 1;i <= m;++i)for (int j = std::max(0, j - 400);j < i;++j) {
+    for (int i = 1;i <= m;++i)for (int j = std::max(0, i - 400);j < i;++j) {
         i64 cnt = i - j;
         dp[i] = std::min(dp[i], dp[j] + nums[i] + cnt * cnt * cnt * cnt);
     }
