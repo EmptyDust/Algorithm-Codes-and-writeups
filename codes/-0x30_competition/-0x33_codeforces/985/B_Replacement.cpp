@@ -20,37 +20,18 @@ const int mod = 998244353;
 void solve() {
     int n;std::cin >> n;
     std::string s;std::cin >> s;
-    std::vector<int> p;
-    int cnt = 1;
-    for (int i = 1;i < n;++i) {
-        if (s[i] == s[i - 1])cnt++;
-        else {
-            p.push_back(cnt);
-            cnt = 1;
+    std::string t;std::cin >> t;
+    int cnt0 = std::count(s.begin(), s.end(), '0');
+    int cnt1 = std::count(s.begin(), s.end(), '1');
+    for (int i = 0;i < n - 1;++i) {
+        if (cnt0 == 0 || cnt1 == 0) {
+            std::cout << "NO";
+            return;
         }
-    }
-    if (p.size() && s.front() == s.back()) {
-        p[0] += cnt;
-    }
-    else p.push_back(cnt);
-    for (int i = 1;i < p.size();++i)if (p[i] != 1 && p[i - 1] != 1)
-    {
-        std::cout << "NO";
-        return;
-    }
-    if (p.size() <= 2) {
-        std::cout << "YES";
-        return;
-    }
-    int even = 0;
-    for (int i = 0;i < p.size();++i) {
-        if (p[i] % 2 == 0) {
-            even++;
-        }
-    }
-    if (even != 1) {
-        std::cout << "NO";
-        return;
+        int c = t[i] - '0';
+        cnt0--, cnt1--;
+        if (c)cnt1++;
+        else cnt0++;
     }
     std::cout << "YES";
 }

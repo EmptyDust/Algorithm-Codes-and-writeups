@@ -33,8 +33,10 @@ void solve() {
         p[0] += cnt;
     }
     else p.push_back(cnt);
-    for (int i = 1;i < p.size();++i)if (p[i] != 1 && p[i - 1] != 1)
-    {
+    bool a = false, b = false;
+    for (int i = 0;i < p.size();i += 2)if (p[i] != 1)a = true;
+    for (int i = 1;i < p.size();i += 2)if (p[i] != 1)b = true;
+    if (a && b) {
         std::cout << "NO";
         return;
     }
