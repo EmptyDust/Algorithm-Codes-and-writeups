@@ -1,26 +1,42 @@
 #include <bits/stdc++.h>
-
-using i64 = long long;
-using pii = std::pair<i64, i64>;
-
-#define ranges std::ranges
-
-void solve(){
-    i64 P, m;std::cin >> P >> m;
-    int ans = 0;
-    for (int x = 0;x < (1 << 20);++x){
-        if (((x * P + 1) ^ (P - 1)) <= m)ans++;
+using namespace std;
+void solve() {
+    int n; cin >> n;
+    string s; cin >> s;
+    int visr = 0, visb = 0, ok = 0;
+    for (int i = 0;i < n;i++) {
+        if (s[i] == s[(i + 1) % n]) {
+            if (s[i] == 'R') visr = 1;
+            else visb = 1;
+            ok++;
+        }
     }
-    std::cout << ans;
+    if (visr & visb) {
+        cout << "NO\n";
+        return;
+    }
+    if (ok == n) {
+        cout << "YES\n";
+        return;
+    }
+    if (visb) for (int i = 0;i < n;i++) s[i] = 'R' + 'B' - s[i];
+    int st = 0;
+    for (int i = 0;i < n;i++) if (s[i] == 'B') st = (i + 1) % n;
+    vector<int> vc;
+    int ntot = 0, cnt = 0;
+    for (int i = 0, j = st;i < n;i++, j = (j + 1) % n) {
+        if (s[j] == 'B') vc.push_back(ntot), cnt += (ntot & 1) ^ 1, ntot = 0;
+        else ntot++;
+    }
+    if (vc.size() == 1 || cnt == 1) {
+        cout << "YES\n";
+        return;
+    }
+    cout << "NO\n";
+    return;
 }
-
-signed main(){
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0), std::cout.tie(0);
-    int t;std::cin >> t;
-    while (t--){
-        solve();
-        std::cout << '\n';
-    }
+signed main() {
+    int t; cin >> t;
+    while (t--) solve();
     return 0;
 }

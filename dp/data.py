@@ -1,22 +1,12 @@
 from random import randint,shuffle
+import random
 
-T = randint(1,100)
+T = 1
 print(T)
 
 for _ in range(T):
-    n = randint(1,10000)
-    m = randint(0,n)
-
-    cnt0 = randint(0,n)
-    sy = n - cnt0
-
-    a = ['0']*cnt0
-
-    for i in range(sy):
-        x = randint(0,int(1e9))
-        a.append(f'{x}')
+    n = randint(1,10)
+    print(n)
     
-    shuffle(a)
-
-    print(f'{n} {m}')
-    print(' '.join(a))
+    for _ in range(n):
+        print('B' if randint(0,1) else 'R',end = '')
