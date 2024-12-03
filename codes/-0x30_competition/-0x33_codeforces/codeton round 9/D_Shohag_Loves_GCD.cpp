@@ -57,7 +57,8 @@ void solve() {
         }
         ans[i] = a[id[i + 1]];
     }
-    for (int x : ans)std::cout << x << ' ';
+
+    // for (int x : ans)std::cout << x << ' ';
 }
 
 signed main() {
