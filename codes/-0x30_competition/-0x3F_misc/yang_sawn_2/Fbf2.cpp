@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 
 #define ranges std::ranges
@@ -65,7 +66,7 @@ struct Fenwick {
 void solve() {
     int n, T;
     std::cin >> n >> T;
-    std::vector<int> a;
+    std::vector<int> a(n), p(n);
     for (int i = 0;i < n;++i) {
         int x;std::cin >> x;
         while (x--) {
@@ -85,9 +86,6 @@ void solve() {
             for (int i = 0;i < b.size();++i) {
                 ans += fw.sum(b[idx[i]] - 1);
                 fw.add(b[idx[i]], 1);
-            }
-            for(int i = 1;i<n;++i){
-
             }
         } while (std::next_permutation(idx.begin(), idx.end()));
         std::cout << ans << '\n';

@@ -79,15 +79,12 @@ void solve() {
         auto b = std::vector<int>(a.begin() + L - 1, a.begin() + R);
         std::vector<int> idx(b.size());
         std::iota(idx.begin(), idx.end(), 0);
-        // for (int& x : b)std::cout << x << " ";
+        for (int& x : b)std::cout << x << " ";
         do {
             Fenwick<int> fw(n);
             for (int i = 0;i < b.size();++i) {
                 ans += fw.sum(b[idx[i]] - 1);
                 fw.add(b[idx[i]], 1);
-            }
-            for(int i = 1;i<n;++i){
-
             }
         } while (std::next_permutation(idx.begin(), idx.end()));
         std::cout << ans << '\n';

@@ -240,9 +240,9 @@ using Z = MInt<P>;
 void solve() {
     int n, T;std::cin >> n >> T;
     std::vector<i64> a(n + 1), lp(n + 1);
-    std::vector<Z> fact(1e5 + 10), res(n + 1), p(n + 1);
+    std::vector<Z> fact(2e5 + 10), res(n + 1), p(n + 1);
     fact[0] = 1;
-    for (int i = 1;i <= 1e5;++i) {
+    for (int i = 1;i <= 2e5;++i) {
         fact[i] = fact[i - 1] * i;
     }
     for (int i = 1;i <= n;++i) {
@@ -267,7 +267,7 @@ void solve() {
         ans += res[r] - res[l] - (p[r] - p[l]) * p[l];
         // std::cout << res[r] - res[l - 1] - (p[r] - p[l - 1]) * p[l - 1] << ' ';
         // std::cout << fact[R - L + 1] << ' ';
-        ans = ans / 2 * fact[R - L + 1];
+        ans = ans * fact[R - L + 1] / 2;
         std::cout << ans << '\n';
     }
 }
