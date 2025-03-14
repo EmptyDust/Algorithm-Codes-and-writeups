@@ -14,8 +14,8 @@ using a4 = std::array<int, 4>;
 const int N = 1e6;
 const int MAXN = 1e6 + 10;
 const int inf = 1e9;
-// const int mod = 1e9 + 7;
-const int mod = 998244353;
+const int mod = 1e9 + 7;
+//const int mod = 998244353;
 
 template<class T>
 constexpr T power(T a, i64 b) {
@@ -236,40 +236,35 @@ constexpr MInt<P> CInv = MInt<P>(V).inv();
 constexpr int P = 1000000007;
 using Z = MInt<P>;
 
-
 void solve() {
-    int n, T;std::cin >> n >> T;
-    std::vector<i64> a(n + 1), lp(n + 1);
-    std::vector<Z> fact(1e5 + 10), res(n + 1), p(n + 1);
-    fact[0] = 1;
-    for (int i = 1;i <= 1e5;++i) {
-        fact[i] = fact[i - 1] * i;
-    }
-    for (int i = 1;i <= n;++i) {
-        std::cin >> a[i];
-        // std::cout << fact[i] << ' ';
-        p[i] = a[i] + p[i - 1];
-        lp[i] = a[i] + lp[i - 1];
-        res[i] = res[i - 1] + a[i] * p[i - 1];
-    }
-    while (T--) {
-        i64 L, R;std::cin >> L >> R;
-        int l = std::lower_bound(lp.begin(), lp.end(), L) - lp.begin();
-        int r = std::lower_bound(lp.begin(), lp.end(), R) - lp.begin();
-        if (l == r) {
-            std::cout << 0 << '\n';
-            continue;
+    int k, m;std::cin >> k >> m;
+    std::string s;std::cin >> s;s += '$';
+    std::reverse(s.begin(), s.end());
+    while (s.length() <= k + 1)s += '0';
+    std::vector dp(2, std::vector<std::vector<Z>>(k + 1, std::vector<Z>(m + 1, 0)));
+    dp[0][0][0] = 1;
+    for (int i = 1;i <= k;++i) {
+        for (int j = 0;j <= m;++j) {
+            if (s[i] == '1') {
+                if (j) dp[0][i][j] = dp[0][i - 1][j - 1] * 2;
+                dp[1][i][j] = dp[1][i - 1][j] * 2;
+            }
+            else {
+                dp[0][i][j] = dp[0][i - 1][j];
+                dp[1][i][j] = dp[0][i - 1][j];
+                if (j) {
+                    dp[0][i][j] += dp[1][i - 1][j - 1];
+                    dp[1][i][j] += dp[1][i - 1][j - 1];
+                }
+            }
+            // std::cout << 0 << ' ' << i << ' ' << j << ' ' << dp[0][i][j] << '\n';
+            // std::cout << 1 << ' ' << i << ' ' << j << ' ' << dp[1][i][j] << '\n';
         }
-        Z ans = 0;
-        // std::cout << (p[l] - L + 1) * ((R - L + 1) - (p[l] - L + 1)) << ' ' << (p[r] - R) * ((R - L + 1) - (p[r] - R)) << '\n';
-        ans += (p[l] - L + 1) * (R - p[l]);
-        ans -= (p[r] - R) * (p[r - 1] - p[l]);
-        ans += res[r] - res[l] - (p[r] - p[l]) * p[l];
-        // std::cout << res[r] - res[l - 1] - (p[r] - p[l - 1]) * p[l - 1] << ' ';
-        // std::cout << fact[R - L + 1] << ' ';
-        ans = ans / 2 * fact[R - L + 1];
-        std::cout << ans << '\n';
     }
+    if (std::count(s.begin(), s.end(), '1') == 0)
+        std::cout << dp[0][k][m] + dp[1][k][m - 1];
+    else
+        std::cout << (dp[0][k][m] + dp[1][k][m - 1]) / 2;
 }
 
 signed main() {
@@ -278,6 +273,7 @@ signed main() {
     int t = 1;
     while (t--) {
         solve();
+        std::cout << '\n';
     }
     return 0;
 }
