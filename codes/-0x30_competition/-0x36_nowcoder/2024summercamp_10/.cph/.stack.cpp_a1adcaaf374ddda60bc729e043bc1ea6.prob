@@ -1,1 +1,0 @@
-{"name":"Local: stack","url":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\stack.cpp","tests":[{"id":1723553340668,"input":"6\n10\n3\n7\n4\n12\n2","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\stack.cpp","group":"local","local":true}

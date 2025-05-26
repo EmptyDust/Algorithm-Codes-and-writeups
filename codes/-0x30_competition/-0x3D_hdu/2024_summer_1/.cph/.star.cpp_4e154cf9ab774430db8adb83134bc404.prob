@@ -1,1 +1,0 @@
-{"name":"Local: star","url":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\star.cpp","tests":[{"id":1721361884248,"input":"1\n5 10\n8 9 10 15\n4 6 7 15\n4 7 12 15\n6 8 10 14\n1 8 10 13","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\github\\Fengling-s-Algorithm-Codes-and-writeups\\star.cpp","group":"local","local":true}
