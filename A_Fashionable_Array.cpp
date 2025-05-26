@@ -19,29 +19,25 @@ const int inf = 1e9;
 const int mod = 998244353;
 
 void solve() {
-    int n;std::cin >> n;
+    int n;
+    std::cin >> n;
     std::vector<int> a(n);
     for (auto& x : a)std::cin >> x;
-    a.insert(a.end(), a.begin(), a.end());
-    // for (auto x : a)std::cout << x << ' ';
-    std::vector<int> res(n);
-    res.back() = 1;
+    ranges::sort(a);
+    int ans = 0;
     for (int i = 0;i < n;++i) {
-        for (int j = i + 1;j < i + n;++j) {
-            if (a[j - 1] == a[j]) {
-                break;
-            }
-            else if (a[i] != a[j]) {
-                // if (n - (j - i + 1) == 0)std::cout << i << ' ' << j << '\n';
-                res[n - (j - i + 1)] = 1;
-                // if (j - i + 1 == 9) {
-                //     std::cout << i << ' ' << j << '\n';
-                //     for (int k = i;k <= j;++k)std::cout << a[k] << ' ';std::cout << '\n';
-                // }
-            }
+        if (a[i] % 2 == a.back() % 2) {
+            ans = i;
+            break;
         }
     }
-    for (auto x : res)std::cout << x;
+    for (int i = n - 1;i >= 0;--i) {
+        if (a[i] % 2 == a.front() % 2) {
+            ans = std::min(ans, n - 1 - i);
+            break;
+        }
+    }
+    std::cout << ans;
 }
 
 signed main() {
