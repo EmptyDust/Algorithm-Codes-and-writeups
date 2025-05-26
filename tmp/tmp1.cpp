@@ -67,22 +67,13 @@ void solve() {
         for (int x : ans)std::cout << x;
         return;
     }
-    // for (auto x : a)std::cout << x << ' ';std::cout << '\n';
     auto work = [&]() {
-        // for (auto x : cur)std::cout << x << ' ';std::cout << '\n';
         if (cur.size() == 1)return;
-        // if (cur.front() == cur.back()) cur.pop_back();
         int m = cur.size();
-        // cur.insert(cur.end(), cur.begin(), cur.end());
         auto z = z_function(cur);
         for (int i = 1;i < m;++i) {
             if (i + z[i] < m) {
                 ans[n - (i + 1)] = 1;
-                // if (i + 1 == 10) {
-                //     // std::cout << i + z[i] << ' ' << m + i << '\n';
-                //     std::cout << "aaa:";
-                //     for (int j = 0;j <= i;++j)std::cout << cur[j] << ' ';std::cout << '\n';
-                // }
             }
         }
         };
@@ -107,3 +98,21 @@ signed main() {
     }
     return 0;
 }
+
+/*
+1
+3 30 共有三个程序，内存为30
+15 1 1
+
+28
+4
+IN 1
+IN 2
+OUT 1
+IN 3
+
+先将1(15)，2(1)调入内存，现在内存中前16位置占用，后14位置空闲
+调出1(15)，现在内存中只有位置16占用
+调入3(1)，现在内存中位置1, 16占用
+现在只有1(15)没有调入内存，内存中有28个空闲位置。
+*/
