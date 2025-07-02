@@ -20,17 +20,18 @@ const int mod = 998244353;
 
 void solve() {
     int n, m;std::cin >> n >> m;
-    std::vector<int> a(n), b(m);
+    std::vector<int> a(m);
     for (auto& x : a)std::cin >> x;
-    for (auto& x : b)std::cin >> x;
-    for (int i = 0, j = 0;i < n;++i) {
-        if (a[i] == b[j])j++;
-        if (j == m) {
-            std::cout << "Yes";
-            return;
+    ranges::sort(a);
+    // for (auto x : a)std::cout << x << ' ';
+    for (int i = 0, j = m - 1;i <= j && n > 0;++i, --j, n -= 2) {
+        for (int k = 0;k < 6;++k)std::cout << (k % 2 ? a[i] : a[j]) << ' ';
+        std::cout << '\n';
+        if (n > 1) {
+            for (int k = 0;k < 6;++k)std::cout << (k % 2 ? a[j] : a[i]) << ' ';
+            std::cout << '\n';
         }
     }
-    std::cout << "No";
 }
 
 signed main() {
@@ -39,7 +40,6 @@ signed main() {
     int t;std::cin >> t;
     while (t--) {
         solve();
-        std::cout << '\n';
     }
     return 0;
 }
