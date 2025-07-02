@@ -6,8 +6,9 @@
 using u32 = unsigned;
 using i64 = long long;
 using u64 = unsigned long long;
+using u128 = unsigned __int128;
 
-using pii = std::pair<int, int>;
+using a2 = std::array<int, 2>;
 using a3 = std::array<int, 3>;
 using a4 = std::array<int, 4>;
 
@@ -18,10 +19,15 @@ const int inf = 1e9;
 const int mod = 998244353;
 
 void solve() {
-    std::cout << "HelloWorld";
-
-    int i = 0;
-
+    int n;std::cin >> n;
+    std::string s, t;std::cin >> s >> t;
+    for (int i = 0;i < n;++i) {
+        if (s[i] == t[i] & s[i] == 'o') {
+            std::cout << "Yes";
+            return;
+        }
+    }
+    std::cout << "No";
 }
 
 signed main() {
@@ -30,7 +36,6 @@ signed main() {
     int t = 1;
     while (t--) {
         solve();
-        std::cout << '\n';
     }
     return 0;
 }
