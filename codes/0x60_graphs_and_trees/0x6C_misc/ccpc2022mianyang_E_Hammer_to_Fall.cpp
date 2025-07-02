@@ -4,13 +4,13 @@ using u32 = unsigned;
 using i64 = long long;
 using u64 = unsigned long long;
 
-using pii = std::pair<int, int>;
+using a2 = std::pair<int, int>;
 using a3 = std::array<int, 3>;
 using a4 = std::array<int, 4>;
 
 const int N = 1e6;
 const int MAXN = 1e6 + 10;
-const int inf = 1e9;
+const i64 inf = 1e18;
 // const int mod = 1e9 + 7;
 const int mod = 998244353;
 
@@ -19,37 +19,52 @@ void solve() {
     const int B = std::sqrt(m * std::__lg(n));
 
     std::vector<int> a(n);
-    for (int i = 0;i < n;++i)std::cin >> a[i];
-    std::vector<pii> g[n];
+    for (auto& x : a)std::cin >> x;
+    std::vector g(n, std::vector<a2>());
+    std::vector h(n, std::vector<a2>());
     for (int i = 0;i < m;++i) {
         int u, v, w;std::cin >> u >> v >> w;
+        u--, v--;
         g[u].push_back({ v,w });
         g[v].push_back({ u,w });
     }
 
-    std::set<a3> st[n];
+    std::vector st(n, std::multiset<i64>());
     for (int u = 0;u < n;++u)if (g[u].size() > B) {
         for (auto [v, w] : g[u]) {
-            st[u].insert({ w,w,u });
+            st[u].insert(w);
+            h[v].push_back({ u,w });
         }
     }
 
     std::vector<int> b(q);
-    for (int i = 0;i < q;++i)std::cin >> b[i];
-    std::vector<int> dp(n);
+    for(auto &x:b)std::cin>>x,x--;
+    std::vector<i64> dp(n);
     for (int i = q - 1;i >= 0;--i) {
         int u = b[i];
-        if (g[u].size() <= B) {
-
+        for (auto [v, w] : h[u]){
+            st[v].extract(dp[u] + w);
         }
-        else {
-            while (1) {
-                auto [d, w, p] = *st[u].begin();
-                if (d != dp[p] + w)continue;
-
+        dp[u] = inf;
+        if (g[u].size() <= B) {
+            for (auto [v, w] : g[u]) {
+                dp[u] = std::min(dp[u], dp[v] + w);
             }
         }
+        else {
+            dp[u] = *st[u].begin();
+        }
+        for (auto [v, w] : h[u]){
+            st[v].insert(dp[u] + w);
+        }
     }
+    i64 ans = 0;
+    for (int i = 0;i < n;++i) {
+        dp[i] %= mod;
+        ans += dp[i] * a[i] % mod;
+        ans %= mod;
+    }
+    std::cout << ans;
 }
 
 signed main() {
@@ -61,4 +76,4 @@ signed main() {
         std::cout << '\n';
     }
     return 0;
-}
+} 
