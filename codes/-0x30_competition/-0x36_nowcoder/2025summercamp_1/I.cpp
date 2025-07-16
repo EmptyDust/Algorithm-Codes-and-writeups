@@ -52,13 +52,14 @@ void solve()
         sum[i] = sum[i - 1] + a[i];
     }
 
-    vector dp(n + 1, vector<set<pair<ll, ll>, std::greater<pair<ll, ll>>>>(n + 1));
+    vector dp(n + 1, vector<vector<array<ll, 2>>>(n + 1));
 
     auto get = [&](int l, int r, ll B) ->ll {
         if (l == r) return 0;
-        auto it = dp[l][r].lower_bound({ B, inf64 });
-        if (it == dp[l][r].end()) return -1;
-        return (*it).second;
+        auto it = ranges::upper_bound(dp[l][r], array<ll, 2>{ B, inf64 });
+        if (it == dp[l][r].begin()) return -1;
+        --it;
+        return (*it)[1];
         };
 
     for (int len = 1;len < n - 1;++len) {
@@ -83,16 +84,10 @@ void solve()
                 temp.push_back({ nowB, nowans });
             }
 
-            if (temp.size()) {
-                ranges::sort(temp);
-                dp[l][r].insert({ temp[0][0], temp[0][1] });
-                for (int j = 1;j < temp.size();++j) {
-                    if (temp[j - 1][1] > temp[j][1]) {
-                        dp[l][r].insert({ temp[j][0], temp[j][1] });
-                    }
-                    else temp[j][1] = temp[j - 1][1];
-                }
-            }
+            ranges::sort(temp);
+            for (int j = 0;j < temp.size();++j)
+                if (dp[l][r].empty() || dp[l][r].back()[1] > temp[j][1])
+                    dp[l][r].push_back({ temp[j][0], temp[j][1] });
         }
     }
     // ranges::sort(vt);
