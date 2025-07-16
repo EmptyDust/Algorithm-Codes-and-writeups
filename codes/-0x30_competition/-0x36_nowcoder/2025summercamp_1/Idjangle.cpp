@@ -52,61 +52,57 @@ void solve()
         sum[i] = sum[i - 1] + a[i];
     }
 
-    vector dp(n + 1, vector<set<pair<ll, ll>, std::greater<pair<ll, ll>>>>(n + 1));
+    vector dp(n + 1, vector<map<ll, ll, std::greater<ll>>>(n + 1));
+    vector vis(n + 1, std::vector(n + 1, false));
 
-    auto get = [&](int l, int r, ll B) ->ll {
-        if (l == r) return 0;
-        auto it = dp[l][r].lower_bound({ B, inf64 });
-        if (it == dp[l][r].end()) return -1;
-        return (*it).second;
-        };
+    auto dfs = [&](auto& self, int l, int r, ll B) -> ll
+        {
+            if (l == r)
+                return 0;
 
-    for (int len = 1;len < n - 1;++len) {
-        for (int l = 1;l <= n - len;++l) {
-            int r = l + len;
+            if (!vis[l][r]) {
+                vis[l][r] = 1;
+                std::vector<std::array<ll, 2>> temp;
+                ll w = clog2(sum[r] - sum[l - 1]);
+                for (int i = l; i < r; i++) {
+                    ll L = sum[i] - sum[l - 1];
+                    ll R = sum[r] - sum[i];
+                    ll nowB = abs(R - L);
 
-            std::vector<std::array<ll, 2>> temp;
-            ll w = clog2(sum[r] - sum[l - 1]);
+                    ll lval = self(self, l, i, nowB);
+                    ll rval = self(self, i + 1, r, nowB);
+                    ll now = min(L, R) * w;
+                    if (lval == -1 || rval == -1)
+                        continue;
 
-            for (int g = l; g < r; g++) {
-                ll L = sum[g] - sum[l - 1];
-                ll R = sum[r] - sum[g];
-                ll nowB = abs(R - L);
-
-                ll lval = get(l, g, nowB);
-                ll rval = get(g + 1, r, nowB);
-                ll now = min(L, R) * w;
-                if (lval == -1 || rval == -1)
-                    continue;
-
-                ll nowans = lval + rval + now;
-                temp.push_back({ nowB, nowans });
-            }
-
-            if (temp.size()) {
-                ranges::sort(temp);
-                dp[l][r].insert({ temp[0][0], temp[0][1] });
-                for (int j = 1;j < temp.size();++j) {
-                    if (temp[j - 1][1] > temp[j][1]) {
-                        dp[l][r].insert({ temp[j][0], temp[j][1] });
+                    ll nowans = lval + rval + now;
+                    temp.push_back({ nowB, nowans });
+                }
+                if (temp.size()) {
+                    ranges::sort(temp);
+                    dp[l][r][temp[0][0]] = temp[0][1];
+                    for (int j = 1;j < temp.size();++j) {
+                        if (temp[j - 1][1] > temp[j][1]) {
+                            dp[l][r][temp[j][0]] = temp[j][1];
+                        }
+                        else temp[j][1] = temp[j - 1][1];
                     }
-                    else temp[j][1] = temp[j - 1][1];
                 }
             }
-        }
-    }
-    // ranges::sort(vt);
-    // for (auto [x, y] : vt)std::cout << x << ' ' << y << '\n';
 
-    ll w = clog2(sum[n]);
+            auto it = dp[l][r].lower_bound(B);
+            if (it == dp[l][r].end()) return -1;
+            return (*it).second;
+        };
+
     for (int i = 1; i < n; i++) {
         ll L = sum[i];
         ll R = sum[n] - sum[i];
         ll nowB = abs(R - L);
 
-        ll lval = get(1, i, nowB);
-        ll rval = get(i + 1, n, nowB);
-        ll now = min(L, R) * w;
+        ll lval = dfs(dfs, 1, i, nowB);
+        ll rval = dfs(dfs, i + 1, n, nowB);
+        ll now = 1ll * min(L, R) * clog2(L + R);
 
         if (lval == -1 || rval == -1)
             cout << "-1 ";
@@ -121,6 +117,7 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
+    // std::cout << clog2(1) << '\n';
     int T = 1;
     cin >> T;
     while (T--) {
