@@ -90,8 +90,6 @@ void solve()
                     dp[l][r].push_back({ temp[j][0], temp[j][1] });
         }
     }
-    // ranges::sort(vt);
-    // for (auto [x, y] : vt)std::cout << x << ' ' << y << '\n';
 
     ll w = clog2(sum[n]);
     for (int i = 1; i < n; i++) {
