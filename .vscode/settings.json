@@ -95,7 +95,11 @@
         "variant": "cpp",
         "generator": "cpp",
         "print": "cpp",
-        "text_encoding": "cpp"
+        "text_encoding": "cpp",
+        "flat_map": "cpp",
+        "flat_set": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "cph.general.saveLocation": ""
