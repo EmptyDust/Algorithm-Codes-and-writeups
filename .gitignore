@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# cph
+.cph
+dp/*.exe
+dp/*.in
