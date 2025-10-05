@@ -11,66 +11,64 @@ using pii = std::pair<int, int>;
 using a3 = std::array<int, 3>;
 using a4 = std::array<int, 4>;
 
+const int dx[8] = { -1, 0, 1, 0, -1, -1, 1, 1 }, dy[8] = { 0, 1, 0, -1, -1, 1, -1, 1 };
 const int N = 1e6;
 const int MAXN = 1e6 + 10;
 const int inf = 1e9;
-// const int mod = 1e9 + 7;
-const int mod = 998244353;
+const i64 INF = 1e18;
+const int mod = 1e9 + 7;
 
-void solve() {
-    int n, m;std::cin >> n >> m;
-    std::vector _info(n, std::vector<int>());
-    for (auto& vt : _info){
-        int k;std::cin >> k;
-        vt.resize(k);
-        for (int& x : vt)std::cin >> x;
+void solve()
+{
+    int n, m;   std::cin >> n >> m;
+    std::vector adj(m + 1, std::vector<int>());
+
+    std::vector a(n + 1, std::vector<int>());
+    for (int i = 1;i <= n;i++) {
+        int cnt;    std::cin >> cnt;
+        for (int j = 1;j <= cnt;j++)
+        {
+            int x;  std::cin >> x;
+            a[i].push_back(x);
+            adj[x].push_back(i);
+        }
     }
-    std::set<int> exist;
-    std::vector del(n, std::vector<int>());
-    std::vector info(n, std::vector<int>());
-    for (int i = n - 1;i >= 0;--i){
-        for (int x : del[i])exist.insert(x);del[i].clear();
-        for (int x : _info[i]){
-            if (!exist.count(x)){
-                info[i].push_back(x);
-                if (i >= 2)
-                    del[i - 2].push_back(x);
+
+    std::vector<int> ans(n + 1);
+    std::iota(ans.begin(), ans.end(), 0);
+    for (int i = 1;i <= n - 1;i++) {
+        int f = 1;
+        for (auto x : a[i]) {
+            if (adj[x].back() == i + 1) {
+                f = 0;
+                break;
             }
         }
+        if (f) {
+            std::swap(ans[i], ans[i + 1]);
+            break;
+        }
     }
 
-    std::set<int> st;
-    bool ans = false;
-    std::vector<int> res(n);
-    std::iota(res.begin(), res.end(), 1);
-    for (int i = 0;i < n;++i){
-        std::set<int> nst;
-        bool ok = true;
-        for (int x : info[i]){
-            if (st.count(x))ok = false;
-            nst.insert(x);
-        }
-        if (ans)continue;
-        if (i && ok){
-            ans = true;
-            std::swap(res[i], res[i - 1]);
-        }
-        st = nst;
-    }
-    std::cout << (ans ? "Yes" : "No") << '\n';
-    if (ans){
-        for (int i = 0;i < n;++i){
-            std::cout << res[i] << " \n"[i == n - 1];
-        }
+    int f = 1;
+    for (int i = 1;i <= n;i++) if (ans[i] != i) f = 0;
+
+    if (f) std::cout << "No";
+    else {
+        std::cout << "Yes\n";
+        for (int i = 1;i <= n;i++)
+            std::cout << ans[i] << " ";
     }
 }
 
-signed main() {
+signed main()
+{
     std::ios::sync_with_stdio(false);
-    std::cin.tie(0), std::cout.tie(0);
-    int t;std::cin >> t;
+    std::cin.tie(0);
+    int t = 1;
+    std::cin >> t;
     while (t--) {
         solve();
+        std::cout << '\n';
     }
-    return 0;
 }
