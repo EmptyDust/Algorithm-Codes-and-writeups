@@ -15,6 +15,57 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"communication": {
+		"scope": "c++,cpp",
+		"prefix": "communication",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"",
+			"#define ranges std::ranges",
+			"#define views std::views",
+			"",
+			"using u32 = unsigned;",
+			"using i64 = long long;",
+			"using u64 = unsigned long long;",
+			"using u128 = unsigned __int128;",
+			"",
+			"using a2 = std::array<int, 2>;",
+			"using a3 = std::array<int, 3>;",
+			"using a4 = std::array<int, 4>;",
+			"",
+			"const int N = 1e6;",
+			"const int MAXN = 1e6 + 10;",
+			"const int inf = 1e9;",
+			"// const int mod = 1e9 + 7;",
+			"const int mod = 998244353;",
+			"",
+			"void encode() {",
+			"    $0",
+			"}",
+			"",
+			"void decode() {",
+			"    ",
+			"}",
+			"",
+			"signed main() {",
+			"    std::ios::sync_with_stdio(false);",
+			"    std::cin.tie(0), std::cout.tie(0);",
+			"    std::string type;std::cin >> type;",
+			"    int t = 1;",
+			"    std::cin >> t;",
+			"    while (t--) {",
+			"        if (type == \"first\") {",
+			"            encode();",
+			"        }",
+			"        else {",
+			"            decode();",
+			"        }",
+			"    }",
+			"    return 0;",
+			"}"
+		],
+		"description": "communication"
+	},
 	"sort": {
 		"prefix": "sort",
 		"body": [
@@ -23,6 +74,7 @@
 		"description": "sort"
 	},
 	"MultiTests": {
+		"scope": "c++,cpp",
 		"prefix": "MultiTests",
 		"body": [
 			"#include <bits/stdc++.h>",
@@ -63,6 +115,7 @@
 		"description": "MultiTests"
 	},
 	"OneTest": {
+		"scope": "c++,cpp",
 		"prefix": "OneTest",
 		"body": [
 			"#include <bits/stdc++.h>",
