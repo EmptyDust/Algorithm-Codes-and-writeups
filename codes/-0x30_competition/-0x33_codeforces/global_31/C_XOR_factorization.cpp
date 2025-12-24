@@ -36,25 +36,32 @@ const int mod = 998244353;
 void solve() {
     i64 n, k;std::cin >> n >> k;
     if (k % 2) {
-        // for (int i = 0;i < k;++i) std::cout << n << " ";
-        std::cout << k * n;
+        for (int i = 0;i < k;++i) std::cout << n << " ";
     }
     else {
-        i64 tmp = n ^ (1 << std::__lg(n));
-        if (tmp != 0) {
-            i64 x = (1 << std::__lg(n)) | ((1 << std::__lg(tmp)) - 1);
-            i64 y = n ^ x;
-            // std::cout << x << ' ' << y << '\n';
-            if (n <= x + y) {
-                std::cout << x + y + (k - 2) * n;
-                // std::cout << x << ' ' << y << ' ';
-                // for (int i = 0;i < k - 2;++i) std::cout << n << ' ';
-                return;
+        std::vector<int> nums;
+        for (int i = std::__lg(n);i >= 0;--i) {
+            int sz = nums.size();
+            if (n >> i & 1) {
+                if (sz < k) {
+                    nums.push_back(n ^ 1 << i);
+                }
+                else {
+                    nums.back() ^= 1 << i;
+                }
+            }
+            else {
+                for (int j = 1;j < sz;j += 2) {
+                    nums[j - 1] ^= 1 << i;
+                    nums[j] ^= 1 << i;
+                }
             }
         }
-        // std::cout << 0 << ' ';
-        // for (int i = 0;i < k - 1;++i) std::cout << n << " ";
-        std::cout << (k - 1) * n;
+
+        for (int i = 0;i < k;++i) {
+            if (i < nums.size()) std::cout << nums[i] << " ";
+            else std::cout << n << ' ';
+        }
     }
 }
 
