@@ -1,30 +1,38 @@
-# 风铃的算法笔记
+<h1 align="center">风铃的算法笔记</h1>
 
-Fengling's algorithm codes and writeups\
-文件目录已施工完毕\
-文件名中的前两个字母可对照下表找到网站，再进一步搜索题号即可找到题目。代码目录的分类规则见 [`codes/README.md`](./codes/README.md)。
+<p align="center">
+  Fengling's algorithm codes and writeups.
+</p>
 
-|网站|网址|简称|我的账号|是否活跃|
-|---|---|---|---|---|
-|力扣|<www.leetcode.cn>|lc|<www.leetcode.cn/u/feng-ling-ye-xing/>|-|
-|acwing|<www.acwing.com>|ac|<www.acwing.com/user/myspace/index/362863/>||
-|蓝桥|<www.lanqiao.cn/problems/>|lq|<www.lanqiao.cn/users/2589722/>||
-|codeforces|<www.codeforces.com>|cf|<www.codeforces.com/profile/Empty_Dust>|√|
-|atcoder|<www.atcoder.jp>|at|<www.atcoder.jp/users/Empty_Dust>||
-|codewars|<www.codewars.com>|cw|<www.codewars.com/users/EmptyDust>||
-|洛谷|<www.luogu.com.cn>|lg|<www.luogu.com.cn/user/1132118>|-|
-|牛客|<https://ac.nowcoder.com>|nc|<https://ac.nowcoder.com/acm/contest/profile/367246012>|-|
-|PTA|<www.pintia.cn>|pt|-||
-|libre|loj.ac|lb|<https://loj.ac/u/Empty_Dust>||
-|hdu|acm.hdu.edu.cn|hd|<https://acm.hdu.edu.cn/userstatus.php?user=EmptyDust>|-|
-|spoj|<www.spoj.com>|sp|<https://www.spoj.com/users/empty_dust/>||
-|libirary checker|<judge.yosupo.jp>|lck|-||
-|qoj|<https://qoj.ac/>|qoj|- <https://qoj.ac/user/profile/Empty_Dust>|√|
+---
 
-## 模板库
+这里保存我的算法竞赛代码、模板、题解和训练记录。代码目录采用“来源主归档 + 知识点索引”的方式组织，具体规则见 [codes/README.md](./codes/README.md)。
 
-1. 算法模板大全\
-<www.github.com/EmptyDust/Algorithm-Codes-and-writeups/blob/main/codes/-0x20_misc/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E8%AF%BE%E6%A8%A1%E6%9D%BF%E5%A4%A7%E5%85%A8.md>
+## 快速入口
 
-2. 风铃の算法竞赛指北\
-acm.emptydust.com
+| 内容 | 链接 |
+| :--- | :--- |
+| 代码目录说明 | [codes/README.md](./codes/README.md) |
+| 算法基础课模板大全 | [算法基础课模板大全](./codes/-0x20_misc/算法基础课模板大全.md) |
+| 个人算法站 | [风铃の算法竞赛指北](https://acm.emptydust.com) |
+
+## 平台索引
+
+文件名中的平台简称可对照下表，再结合题号到对应网站检索题面。
+
+| 网站 | 网址 | 简称 | 我的账号 | 活跃 |
+| :--- | :--- | :---: | :--- | :---: |
+| 力扣 | [leetcode.cn](https://leetcode.cn) | `lc` | [feng-ling-ye-xing](https://leetcode.cn/u/feng-ling-ye-xing/) | - |
+| AcWing | [acwing.com](https://www.acwing.com) | `ac` | [362863](https://www.acwing.com/user/myspace/index/362863/) |  |
+| 蓝桥 | [lanqiao.cn](https://www.lanqiao.cn/problems/) | `lq` | [2589722](https://www.lanqiao.cn/users/2589722/) |  |
+| Codeforces | [codeforces.com](https://codeforces.com) | `cf` | [Empty_Dust](https://codeforces.com/profile/Empty_Dust) | ✓ |
+| AtCoder | [atcoder.jp](https://atcoder.jp) | `at` | [Empty_Dust](https://atcoder.jp/users/Empty_Dust) |  |
+| Codewars | [codewars.com](https://www.codewars.com) | `cw` | [EmptyDust](https://www.codewars.com/users/EmptyDust) |  |
+| 洛谷 | [luogu.com.cn](https://www.luogu.com.cn) | `lg` / `lgp` | [1132118](https://www.luogu.com.cn/user/1132118) | - |
+| 牛客 | [ac.nowcoder.com](https://ac.nowcoder.com) | `nc` | [367246012](https://ac.nowcoder.com/acm/contest/profile/367246012) | - |
+| PTA | [pintia.cn](https://www.pintia.cn) | `pt` | - |  |
+| LibreOJ | [loj.ac](https://loj.ac) | `lb` | [Empty_Dust](https://loj.ac/u/Empty_Dust) |  |
+| HDU | [acm.hdu.edu.cn](https://acm.hdu.edu.cn) | `hd` | [EmptyDust](https://acm.hdu.edu.cn/userstatus.php?user=EmptyDust) | - |
+| SPOJ | [spoj.com](https://www.spoj.com) | `sp` | [empty_dust](https://www.spoj.com/users/empty_dust/) |  |
+| Library Checker | [judge.yosupo.jp](https://judge.yosupo.jp) | `lck` | - |  |
+| QOJ | [qoj.ac](https://qoj.ac) | `qoj` | [Empty_Dust](https://qoj.ac/user/profile/Empty_Dust) | ✓ |
