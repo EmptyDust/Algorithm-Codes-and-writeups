@@ -32,6 +32,24 @@
 *.app
 *.bin
 
+# Generated archives / binary artifacts
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.log
+
 # cph
 .cph
 *.prob
