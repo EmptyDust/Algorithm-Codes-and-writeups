@@ -19,18 +19,22 @@ const int inf = 1e9;
 const int mod = 998244353;
 
 void solve() {
-    int n;std::cin >> n;
+    int n;
+    std::cin >> n;
     std::vector<i64> a(n), vis(n);
-    for (auto& x : a)std::cin >> x;
+    for (auto &x : a)
+        std::cin >> x;
     std::vector g(n, std::vector<int>());
-    for (int i = 1;i < n;++i) {
-        int u, v;std::cin >> u >> v;u--, v--;
+    for (int i = 1; i < n; ++i) {
+        int u, v;
+        std::cin >> u >> v;
+        u--, v--;
         g[u].push_back(v);
         g[v].push_back(u);
     }
     std::set<a2> st;
-    for (int i = 0;i < n;++i) {
-        st.insert(a2{ a[i], i });
+    for (int i = 0; i < n; ++i) {
+        st.insert(a2{a[i], i});
     }
     i64 ans = 0;
     while (st.size()) {
@@ -38,11 +42,12 @@ void solve() {
         st.erase(st.begin());
         vis[u] = 1;
         ans += x;
-        for (auto v : g[u]) if (!vis[v]) {
-            st.erase({ a[v], v });
-            a[v] += x;
-            st.insert({ a[v], v });
-        }
+        for (auto v : g[u])
+            if (!vis[v]) {
+                st.erase({a[v], v});
+                a[v] += x;
+                st.insert({a[v], v});
+            }
     }
     std::cout << ans;
 }
@@ -50,7 +55,8 @@ void solve() {
 signed main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(0), std::cout.tie(0);
-    int t;std::cin >> t;
+    int t;
+    std::cin >> t;
     while (t--) {
         solve();
         std::cout << '\n';

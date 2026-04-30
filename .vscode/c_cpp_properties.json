@@ -1,23 +1,23 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "macOS",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/.vscode/include"
             ],
             "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
+                "LOCAL"
             ],
-            "windowsSdkVersion": "10.0.22621.0",
-            "compilerPath": "D:\\MSYS2\\mingw64\\bin\\gcc.exe",
-            "cStandard": "c17",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "/usr/bin/g++",
             "compilerArgs": [
-                "-std=20"
-            ]
+                "-std=c++23",
+                "-O2",
+                "-I${workspaceFolder}/.vscode/include"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "macos-clang-arm64"
         }
     ],
     "version": 4
