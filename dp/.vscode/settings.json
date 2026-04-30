@@ -1,0 +1,60 @@
+{
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "[c]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true
+    },
+    "C_Cpp.default.cStandard": "c17",
+    "C_Cpp.default.cppStandard": "c++23",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/../.vscode/include"
+    ],
+    "C_Cpp.default.defines": [
+        "LOCAL"
+    ],
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "clangd.path": "/usr/bin/clangd",
+    "clangd.arguments": [
+        "--header-insertion=never"
+    ],
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.fileDirectoryAsCwd": true,
+    "code-runner.ignoreSelection": true,
+    "code-runner.executorMap": {
+        "cpp": "bash \"$workspaceRoot/../.vscode/run_cpp.sh\" \"$fullFileName\" \"$workspaceRoot/..\"",
+        "python": "python3 -u \"$fullFileName\""
+    },
+    "cph.general.saveLocation": "/Users/fengling/github/Algorithm-Codes-and-writeups/.cph",
+    "cph.general.timeOut": 5000,
+    "cph.general.hideStderrorWhenCompiledOK": true,
+    "cph.general.ignoreSTDERROR": false,
+    "cph.general.defaultOnlineJudge": false,
+    "cph.general.defaultLanguage": "cpp",
+    "cph.general.menuChoices": "cpp python",
+    "cph.general.autoShowJudge": true,
+    "cph.language.cpp.Command": "/Users/fengling/github/Algorithm-Codes-and-writeups/.vscode/cph_cpp_compiler.sh",
+    "cph.language.cpp.Args": "-std=c++23 -O2 -pipe -Wall -Wextra -DLOCAL",
+    "cph.language.cpp.OutputArg": "-o",
+    "cph.language.cpp.SubmissionCompiler": "GNU G++23 14.2 (64 bit, msys2)",
+    "cph.language.python.Command": "python3",
+    "cph.language.python.Args": "-u",
+    "cph.language.python.SubmissionCompiler": "PyPy 3.10 (7.3.15, 64bit)"
+}
