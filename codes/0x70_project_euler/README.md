@@ -1,6 +1,6 @@
 # 0x70 Project Euler
 
-这里保存 Project Euler 题目的代码。当前以脚本形式记录解法，适合快速验证数学推导或枚举策略。
+这里作为 Project Euler 的来源归档和专题入口。由于 Project Euler 本身就是独立来源，题号脚本可以直接保留在本目录。
 
 ## 直接文件
 

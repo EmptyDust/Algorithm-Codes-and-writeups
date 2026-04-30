@@ -30,9 +30,11 @@
 *.exe
 *.out
 *.app
+*.bin
 
 # cph
 .cph
+*.prob
 dp/*.exe
 dp/*.in
 
