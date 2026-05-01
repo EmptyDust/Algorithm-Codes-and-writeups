@@ -11,7 +11,6 @@
 | [`0xA3_nyh`](./0xA3_nyh/) | 个人或课程相关归档。 |
 | [`0xA4_mm`](./0xA4_mm/) | 个人或课程相关归档。 |
 | [`0xA5_homework`](./0xA5_homework/) | 作业代码与材料。 |
-| [`baidustar`](./baidustar/) | 百度之星相关历史材料。 |
 
 ## 直接文件
 
