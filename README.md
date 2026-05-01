@@ -28,8 +28,8 @@
 | Codeforces | [codeforces.com](https://codeforces.com) | `cf` | [Empty_Dust](https://codeforces.com/profile/Empty_Dust) | ✓ |
 | AtCoder | [atcoder.jp](https://atcoder.jp) | `at` | [Empty_Dust](https://atcoder.jp/users/Empty_Dust) |  |
 | Codewars | [codewars.com](https://www.codewars.com) | `cw` | [EmptyDust](https://www.codewars.com/users/EmptyDust) |  |
-| 洛谷 | [luogu.com.cn](https://www.luogu.com.cn) | `lg` / `lgp` | [1132118](https://www.luogu.com.cn/user/1132118) | - |
-| 牛客 | [ac.nowcoder.com](https://ac.nowcoder.com) | `nc` | [367246012](https://ac.nowcoder.com/acm/contest/profile/367246012) | - |
+| 洛谷 | [luogu.com.cn](https://www.luogu.com.cn) | `lg` / `lgp` | [Empty_Dust](https://www.luogu.com.cn/user/1132118) | - |
+| 牛客 | [ac.nowcoder.com](https://ac.nowcoder.com) | `nc` | [风铃夜行](https://ac.nowcoder.com/acm/contest/profile/367246012) | - |
 | PTA | [pintia.cn](https://www.pintia.cn) | `pt` | - |  |
 | LibreOJ | [loj.ac](https://loj.ac) | `lb` | [Empty_Dust](https://loj.ac/u/Empty_Dust) |  |
 | HDU | [acm.hdu.edu.cn](https://acm.hdu.edu.cn) | `hd` | [EmptyDust](https://acm.hdu.edu.cn/userstatus.php?user=EmptyDust) | - |
