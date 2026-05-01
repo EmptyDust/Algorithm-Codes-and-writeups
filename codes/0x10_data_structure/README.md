@@ -6,16 +6,7 @@
 
 | 目录 | 内容 |
 | --- | --- |
-| [`0x11_linked_list`](./0x11_linked_list/) | 链表与相邻关系维护。 |
-| [`0x12_monotonic_queue`](./0x12_monotonic_queue/) | 单调队列、单调栈相关维护。 |
-| [`0x13_vector`](./0x13_vector/) | 动态数组、序列容器和下标维护。 |
-| [`0x14_stack_and_queue`](./0x14_stack_and_queue/) | 栈、队列及其模拟。 |
-| [`0x15_sparse_table`](./0x15_sparse_table/) | ST 表与静态 RMQ。 |
-| [`0x16_segment_tree`](./0x16_segment_tree/) | 线段树、懒标记与区间维护。 |
 | [`0x17_binary_indexed_tree`](./0x17_binary_indexed_tree/) | 树状数组、前缀维护和离线计数。 |
-| [`0x18_bitset`](./0x18_bitset/) | bitset 优化与位集运算。 |
-| [`0x19_trie`](./0x19_trie/) | Trie、字典树与异或 Trie。 |
-| [`0x1a_dsu`](./0x1a_dsu/) | 并查集与连通性维护。 |
 
 ## 使用约定
 

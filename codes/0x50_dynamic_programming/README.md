@@ -6,13 +6,8 @@
 
 | 目录 | 内容 |
 | --- | --- |
-| [`0x51_bag_problem`](./0x51_bag_problem/) | 背包 DP 及其变体。 |
 | [`0x52_fibonacci`](./0x52_fibonacci/) | 斐波那契型递推、线性递推。 |
-| [`0x53_subquence`](./0x53_subquence/) | 子序列、LIS/LCS 类问题。 |
 | [`0x54_num_pos`](./0x54_num_pos/) | 数位 DP。 |
-| [`0x55_probability`](./0x55_probability/) | 概率 DP、期望 DP。 |
-| [`0x56_misc`](./0x56_misc/) | 其他 DP 题。 |
-| [`0x57_sosdp`](./0x57_sosdp/) | SOS DP 与集合状态优化。 |
 
 ## 直接文件
 
