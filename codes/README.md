@@ -37,7 +37,7 @@
 
 已按文件名前缀迁移可自动识别来源的历史题目代码，包括 `cf*`、`lc*`、`lgp*`、`ac*`、`lq*`、`nc*`、`abc*`、`sp*`、`lb*`，以及带明确 Codeforces 题号、`cfedu`、`uva`、`lgb/lgt`、`USACO` 标记的文件。百度之星历史目录也已并入 [`-0x30_competition/-0x3B_baidustar`](./-0x30_competition/-0x3B_baidustar/)。
 
-知识点目录中剩余的源码主要是模板草稿、模型代码、课程作业、校内训练、Project Euler 或无法从文件名稳定判断来源的历史文件；这些文件不再强行自动迁移。
+明显的模型代码已迁入 [`-0x10_model`](./-0x10_model/)。知识点目录中剩余的源码主要是课程作业、校内训练、Project Euler 或无法从文件名稳定判断来源的历史文件；这些文件不再强行自动迁移。
 
 ## 兜底目录
 

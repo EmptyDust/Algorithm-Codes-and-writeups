@@ -10,7 +10,9 @@
 | [`-0x12_sort`](./-0x12_sort/) | 排序模型、排序相关技巧。 |
 | [`-0x13_pbds`](./-0x13_pbds/) | GNU PBDS 相关用法。 |
 | [`-0x14_binary_indexed_tree`](./-0x14_binary_indexed_tree/) | 树状数组模型。 |
+| [`-0x15_string`](./-0x15_string/) | 字符串算法模型。 |
 | [`-0x16_math`](./-0x16_math/) | 数学模型与常用推导实现。 |
+| [`-0x17_recursion`](./-0x17_recursion/) | 递归与基础过程模型。 |
 
 ## 使用约定
 
