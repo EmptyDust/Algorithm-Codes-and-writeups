@@ -18,8 +18,6 @@
 | 文件 | 内容 |
 | --- | --- |
 | [`B.py`](./B.py) | 零散脚本。 |
-| [`lgp2658题解.cpp`](./lgp2658题解.cpp) | 洛谷 P2658 题解代码。 |
-| [`lq606.cpp`](./lq606.cpp) | 蓝桥题目代码。 |
 | [`yxgz_s_newspaper.cpp`](./yxgz_s_newspaper.cpp) | 零散题目代码。 |
 
 ## 使用约定
