@@ -1,3 +1,4 @@
+#include <chrono>
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
@@ -11,13 +12,17 @@ enum class GeneratorMode {
 	Python,
 };
 
+struct Options {
+	GeneratorMode generator_mode = GeneratorMode::Cpp;
+	std::optional<double> time_limit_ms;
+};
+
 std::string quote(const std::string& value) {
 	return "\"" + value + "\"";
 }
 
 bool has_required_files(const fs::path& dir) {
-	return fs::exists(dir / "std.cpp") && fs::exists(dir / "solve.cpp") &&
-		(fs::exists(dir / "data.cpp") || fs::exists(dir / "data.py"));
+	return fs::exists(dir / "solve.cpp") && (fs::exists(dir / "data.cpp") || fs::exists(dir / "data.py"));
 }
 
 std::optional<fs::path> locate_base_dir(const fs::path& start) {
@@ -54,18 +59,30 @@ std::string find_compiler() {
 	return "";
 }
 
-std::optional<GeneratorMode> parse_generator_mode(int argc, char* argv[]) {
-	if (argc <= 1) {
-		return GeneratorMode::Cpp;
+std::optional<Options> parse_options(int argc, char* argv[]) {
+	Options options;
+	for (int i = 1; i < argc; ++i) {
+		std::string arg = argv[i];
+		if (arg == "cpp") {
+			options.generator_mode = GeneratorMode::Cpp;
+			continue;
+		}
+		if (arg == "py" || arg == "python") {
+			options.generator_mode = GeneratorMode::Python;
+			continue;
+		}
+		try {
+			size_t pos = 0;
+			double value = std::stod(arg, &pos);
+			if (pos != arg.size() || value < 0) {
+				return std::nullopt;
+			}
+			options.time_limit_ms = value;
+		} catch (...) {
+			return std::nullopt;
+		}
 	}
-	std::string mode = argv[1];
-	if (mode == "cpp") {
-		return GeneratorMode::Cpp;
-	}
-	if (mode == "py" || mode == "python") {
-		return GeneratorMode::Python;
-	}
-	return std::nullopt;
+	return options;
 }
 
 int main(int argc, char* argv[]) {
@@ -87,9 +104,9 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	std::optional<GeneratorMode> generator_mode = parse_generator_mode(argc, argv);
-	if (!generator_mode) {
-		std::cerr << "Usage: " << argv[0] << " [cpp|py]\n";
+	std::optional<Options> options = parse_options(argc, argv);
+	if (!options) {
+		std::cerr << "Usage: " << argv[0] << " [cpp|py] [time_limit_ms]\n";
 		return 2;
 	}
 
@@ -101,32 +118,32 @@ int main(int argc, char* argv[]) {
 	fs::create_directories(artifact_dir);
 
 	std::string compile_flags = " -std=c++23 -O2 -I " + quote(include_dir.string());
-	fs::path std_bin = artifact_dir / "std";
 	fs::path solve_bin = artifact_dir / "solve";
 	fs::path data_bin = artifact_dir / "data";
 	fs::path data_in = artifact_dir / "data.in";
-	fs::path std_out = artifact_dir / "std.out";
 	fs::path solve_out = artifact_dir / "solve.out";
-	fs::path diff_log = artifact_dir / "diff.log";
-	if (run(compiler + compile_flags + " std.cpp -o " + quote(std_bin.string()))) return 1;
 	if (run(compiler + compile_flags + " solve.cpp -o " + quote(solve_bin.string()))) return 1;
-	if (*generator_mode == GeneratorMode::Cpp && run(compiler + compile_flags + " data.cpp -o " + quote(data_bin.string()))) return 1;
+	if (options->generator_mode == GeneratorMode::Cpp && run(compiler + compile_flags + " data.cpp -o " + quote(data_bin.string()))) return 1;
 
-	int t = 0;
-	while (true) {
-		std::cout << "Test: " << t++ << '\n';
-		if (*generator_mode == GeneratorMode::Cpp) {
-			if (run(quote(data_bin.string()) + " > " + quote(data_in.string()))) return 1;
-		} else {
-			if (run("python3 data.py > " + quote(data_in.string()))) return 1;
-		}
-		if (run(quote(std_bin.string()) + " < " + quote(data_in.string()) + " > " + quote(std_out.string()))) return 1;
-		if (run(quote(solve_bin.string()) + " < " + quote(data_in.string()) + " > " + quote(solve_out.string()))) return 1;
-		if (run("diff -u " + quote(std_out.string()) + " " + quote(solve_out.string()) + " > " + quote(diff_log.string()))) {
-			std::cout << "WA\n";
-			break;
-		}
-		std::cout << "AC\n";
+	if (options->generator_mode == GeneratorMode::Cpp) {
+		if (run(quote(data_bin.string()) + " > " + quote(data_in.string()))) return 1;
+	} else {
+		if (run("python3 data.py > " + quote(data_in.string()))) return 1;
+	}
+
+	auto start = std::chrono::steady_clock::now();
+	int code = run(quote(solve_bin.string()) + " < " + quote(data_in.string()) + " > " + quote(solve_out.string()));
+	auto finish = std::chrono::steady_clock::now();
+	double elapsed_ms = std::chrono::duration<double, std::milli>(finish - start).count();
+
+	std::cout << "Elapsed: " << elapsed_ms << " ms\n";
+	if (code != 0) {
+		std::cerr << "solve exited with code " << code << '\n';
+		return 1;
+	}
+	if (options->time_limit_ms && elapsed_ms > *options->time_limit_ms) {
+		std::cout << "Potential TLE\n";
+		return 3;
 	}
 	return 0;
 }

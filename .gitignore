@@ -57,9 +57,10 @@
 dp/*.exe
 dp/*.in
 !dp/data.in
+dp/.tmp/
 
 # VS Code task outputs
 .vscode/build/
 
 # unpublic contest
-codes/-0x30_competition/-0x3F_misc/2026_hnnu_campus_contest_and_hunan_multi_school_problem_review/
+codes/-0x30_competition/-0x39_xcpc/2026_shaanxi_provincal
