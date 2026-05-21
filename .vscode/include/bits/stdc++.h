@@ -76,6 +76,24 @@
 #include <variant>
 #include <vector>
 
+namespace std {
+inline int __lg(int x) {
+    return 31 - __builtin_clz(x);
+}
+
+inline int __lg(long long x) {
+    return 63 - __builtin_clzll(x);
+}
+
+inline int __lg(unsigned x) {
+    return 31 - __builtin_clz(x);
+}
+
+inline int __lg(unsigned long long x) {
+    return 63 - __builtin_clzll(x);
+}
+} // namespace std
+
 #if __cplusplus >= 202002L
 #include <barrier>
 #include <compare>
